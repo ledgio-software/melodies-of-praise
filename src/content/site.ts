@@ -115,7 +115,12 @@ export const site = {
    * Wide, landscape shots work best, e.g. the full choir in robes.
    * If left empty, the first five gallery photos are used.
    */
-  heroSlides: [] as Photo[],
+  heroSlides: [
+    { src: "/photos/hero/choir-ministering-purple.jpg", alt: "Melodies of Praise ministering on stage in matching attire" },
+    { src: "/photos/hero/choir-ministering-blue.jpg", alt: "The choir worshipping under blue stage lights, led by a soloist" },
+    { src: "/photos/hero/choir-worship-lights.jpg", alt: "Choir members singing with hands raised in worship" },
+    { src: "/photos/hero/choir-black-and-white.jpg", alt: "Black and white photo of the full choir in ministration" },
+  ] as Photo[],
 
   events: [] as ChoirEvent[],
   videos: [] as Video[],

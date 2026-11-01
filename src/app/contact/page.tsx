@@ -5,7 +5,7 @@ import { SocialButtons } from "@/components/Social";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Visit Us",
   description: `Find and contact ${site.name}, ${site.church}, ${site.assembly}.`,
 };
 
@@ -13,7 +13,7 @@ export default function Contact() {
   const c = site.contact;
   return (
     <>
-      <PageBanner eyebrow="Find us" title="Contact" intro="We would love to hear from you, and to see you at rehearsal." />
+      <PageBanner eyebrow="Find us" title="Visit Us" intro="We would love to hear from you, and to see you at rehearsal." image={site.groupPhoto} />
       <section className="section">
         <div className="container">
           <div className="grid grid--2" style={{ alignItems: "start" }}>

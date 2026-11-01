@@ -119,8 +119,14 @@ export const site = {
     { src: "/photos/hero/choir-ministering-purple.jpg", alt: "Melodies of Praise ministering on stage in matching attire" },
     { src: "/photos/hero/choir-ministering-blue.jpg", alt: "The choir worshipping under blue stage lights, led by a soloist" },
     { src: "/photos/hero/choir-worship-lights.jpg", alt: "Choir members singing with hands raised in worship" },
-    { src: "/photos/hero/choir-black-and-white.jpg", alt: "Black and white photo of the full choir in ministration" },
+    { src: "/photos/group/choir-group-mop-shirts.jpg", alt: "Melodies of Praise members together on stage in MOP shirts" },
   ] as Photo[],
+
+  /** Group photo used behind the Our Story and Visit Us page banners. */
+  groupPhoto: {
+    src: "/photos/group/choir-group-mop-shirts.jpg",
+    alt: "Melodies of Praise members together on stage in MOP shirts",
+  } as Photo,
 
   events: [] as ChoirEvent[],
   videos: [] as Video[],

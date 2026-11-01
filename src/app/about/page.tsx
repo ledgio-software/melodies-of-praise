@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <>
-      <PageBanner eyebrow={`Since ${site.foundedYear}`} title="Our Story" intro="How God has led Melodies of Praise from a district choir to a ministry reaching the area and beyond." />
+      <PageBanner eyebrow={`Since ${site.foundedYear}`} title="Our Story" intro="How God has led Melodies of Praise from a district choir to a ministry reaching the area and beyond." image={site.groupPhoto} />
 
       <section className="section">
         <div className="container narrow">

@@ -563,6 +563,31 @@ p {
   font-size: 1.2rem;
 }
 
+/* banner with a background photo (Our Story, Visit Us) */
+.banner--photo {
+  overflow: hidden;
+  min-height: clamp(380px, 56vh, 560px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner--photo .container {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 12px rgb(0 0 0 / 0.5);
+}
+.banner__img {
+  object-fit: cover;
+  object-position: center 30%;
+  z-index: 0;
+}
+.banner--photo::after {
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgb(11 10 10 / 0.5) 0%, rgb(46 4 16 / 0.45) 60%, rgb(11 10 10 / 0.85) 100%),
+    linear-gradient(0deg, var(--brand) 0, var(--brand) 3px, transparent 3px);
+}
+
 /* ---------- cards & panels ---------- */
 .card {
   background: var(--white);

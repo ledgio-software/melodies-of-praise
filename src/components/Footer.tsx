@@ -22,7 +22,7 @@ export function Footer({ rehearsal, social }: { rehearsal: Rehearsal; social: So
           <div>
             <h4>Explore</h4>
             <ul>
-              {nav.slice(0, 5).map((n) => (
+              {nav.slice(0, 6).map((n) => (
                 <li key={n.href}>
                   <Link href={n.href}>{n.label}</Link>
                 </li>
@@ -32,7 +32,7 @@ export function Footer({ rehearsal, social }: { rehearsal: Rehearsal; social: So
           <div>
             <h4>Get involved</h4>
             <ul>
-              {nav.slice(5).map((n) => (
+              {nav.slice(6).map((n) => (
                 <li key={n.href}>
                   <Link href={n.href}>{n.label}</Link>
                 </li>

@@ -7,11 +7,14 @@ import { site } from "@/content/site";
 import { upcomingEvents } from "@/lib/events";
 import { EventList } from "@/components/EventList";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
+import { NewsCards } from "@/components/NewsCards";
+import { listNews } from "@/lib/news";
 
 export const revalidate = 3600;
 
 export default async function Home() {
   const c = await getContent();
+  const news = await listNews(3);
   const events = upcomingEvents(c.events).slice(0, 3);
   return (
     <>
@@ -132,6 +135,22 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {news.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="center">
+              <span className="eyebrow">From the choir</span>
+              <h2>Latest News</h2>
+              <div className="ornament" aria-hidden="true">✦</div>
+            </div>
+            <NewsCards posts={news} />
+            <p className="center" style={{ marginTop: "2rem" }}>
+              <Link href="/news" className="btn btn--ghost">All news</Link>
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="section section--parchment">
         <div className="container narrow">

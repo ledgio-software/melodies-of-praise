@@ -117,6 +117,20 @@ const SCHEMA = [
     created_at TIMESTAMPTZ NOT NULL DEFAULT now()
   )`,
   `CREATE INDEX IF NOT EXISTS enquiries_status_idx ON enquiries (status, created_at DESC)`,
+  `CREATE TABLE IF NOT EXISTS news (
+    id SERIAL PRIMARY KEY,
+    slug TEXT UNIQUE NOT NULL,
+    title TEXT NOT NULL,
+    summary TEXT NOT NULL DEFAULT '',
+    body TEXT NOT NULL DEFAULT '',
+    cover_url TEXT,
+    cover_alt TEXT NOT NULL DEFAULT '',
+    published BOOLEAN NOT NULL DEFAULT false,
+    published_on DATE NOT NULL DEFAULT CURRENT_DATE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+  )`,
+  `CREATE INDEX IF NOT EXISTS news_published_idx ON news (published, published_on DESC)`,
 ];
 
 async function migrate(run: QueryFn) {

@@ -13,6 +13,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const items = [
     { href: "/admin", label: "Overview" },
     { href: "/admin/inbox", label: "Inbox", badge: unread?.n ?? 0 },
+    { href: "/admin/news", label: "News" },
     { href: "/admin/events", label: "Events" },
     { href: "/admin/photos", label: "Photos & slideshow" },
     { href: "/admin/leaders", label: "Leaders" },

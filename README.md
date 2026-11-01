@@ -4,7 +4,7 @@ Official website of **Melodies of Praise (MOP)**, The Church of Pentecost, Lapaz
 Built with Next.js and deployed on Vercel.
 
 ## Pages
-Home · About (history, milestones, mission & vision, leadership) · Music · Events · Gallery ·
+Home · About (history, milestones, mission & vision, leadership) · News · Music · Events · Gallery ·
 Join Us (form) · Bookings (form) · Give (MTN MoMo) · Contact (map)
 
 ## Admin dashboard (`/admin`)
@@ -13,6 +13,7 @@ The publicity team manages the site at **/admin**, from a phone or computer:
 | Section | What it does |
 |---|---|
 | Inbox | Booking requests and Join Us applications from the website, with one-tap WhatsApp / call / email replies |
+| News | Write posts with a cover photo; publish, keep as draft, or schedule for a future date. Shown at /news, one page per story, latest three on the home page |
 | Events | Add, edit, delete events (past ones move to “Recent” automatically) |
 | Photos & slideshow | Upload photos (resized in the browser), choose slideshow / gallery, reorder, pick the page-banner photo |
 | Leaders | Names, titles, portraits and order on the About page |

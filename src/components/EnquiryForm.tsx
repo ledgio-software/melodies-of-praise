@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { site } from "@/content/site";
 
 export type Field = {
   name: string;
@@ -22,15 +21,16 @@ type Status =
   | { kind: "whatsapp"; url: string }
   | { kind: "error"; message: string };
 
-function whatsappUrl(subject: string, values: Record<string, string>, fields: Field[]) {
-  if (!site.contact.whatsapp) return null;
+function whatsappUrl(whatsapp: string | null, subject: string, values: Record<string, string>, fields: Field[]) {
+  if (!whatsapp) return null;
   const lines = [`*${subject}* (via website)`, ""];
   for (const f of fields) if (values[f.name]) lines.push(`${f.label}: ${values[f.name]}`);
-  return `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
+  return `https://wa.me/${whatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
 
-export function EnquiryForm({ kind, subject, fields, submitLabel }: {
+export function EnquiryForm({ kind, subject, fields, submitLabel, whatsapp }: {
   kind: "booking" | "join";
+  whatsapp: string | null;
   subject: string;
   fields: Field[];
   submitLabel: string;
@@ -58,7 +58,7 @@ export function EnquiryForm({ kind, subject, fields, submitLabel }: {
       }
       const body = (await res.json().catch(() => ({}))) as { error?: string; fallback?: boolean };
       if (body.fallback) {
-        const url = whatsappUrl(subject, values, fields);
+        const url = whatsappUrl(whatsapp, subject, values, fields);
         if (url) {
           window.open(url, "_blank", "noopener");
           setStatus({ kind: "whatsapp", url });

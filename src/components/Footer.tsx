@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { nav, site } from "@/content/site";
+import type { Rehearsal, Social } from "@/lib/content";
 import { socialLinks } from "./Social";
 
-export function Footer() {
+export function Footer({ rehearsal, social }: { rehearsal: Rehearsal; social: Social }) {
   const year = new Date().getFullYear();
   return (
     <footer className="footer">
@@ -41,7 +42,7 @@ export function Footer() {
           <div>
             <h4>Follow us</h4>
             <ul className="footer__social">
-              {socialLinks.map(({ href, label, Icon }) => (
+              {socialLinks(social).map(({ href, label, Icon }) => (
                 <li key={label}>
                   <a href={href} target="_blank" rel="noopener noreferrer">
                     <Icon size={18} /> {label}
@@ -56,7 +57,7 @@ export function Footer() {
             © {year} {site.name} ({site.shortName}). All glory to God.
           </span>
           <span>
-            Rehearsals {site.rehearsal.day} · {site.rehearsal.time}
+            Rehearsals {rehearsal.day} · {rehearsal.time}
           </span>
         </div>
       </div>

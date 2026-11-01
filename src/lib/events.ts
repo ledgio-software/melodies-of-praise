@@ -1,13 +1,13 @@
-import { site, type ChoirEvent } from "@/content/site";
+import type { ChoirEvent } from "@/content/site";
 
 const todayISO = () => new Date().toISOString().slice(0, 10);
 
-export function upcomingEvents(): ChoirEvent[] {
+export function upcomingEvents(events: ChoirEvent[]): ChoirEvent[] {
   const today = todayISO();
-  return site.events.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
+  return events.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
 }
 
-export function pastEvents(): ChoirEvent[] {
+export function pastEvents(events: ChoirEvent[]): ChoirEvent[] {
   const today = todayISO();
-  return site.events.filter((e) => e.date < today).sort((a, b) => b.date.localeCompare(a.date));
+  return events.filter((e) => e.date < today).sort((a, b) => b.date.localeCompare(a.date));
 }

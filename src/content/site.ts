@@ -70,7 +70,7 @@ export const site = {
 
   /** Leaders: names, titles and photos to come from the choir via WhatsApp. */
   leaders: [
-    { name: "Elder Micaiah Kofi Tsibuah", title: "Patron", photo: null },
+    { name: "Elder Micaiah Kofi Tsibuah", title: "Patron", photo: "/photos/leaders/elder-micaiah-kofi-tsibuah.jpg" },
   ] as Leader[],
 
   rehearsal: {

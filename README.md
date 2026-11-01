@@ -19,7 +19,7 @@ Nearly everything the publicity team sends goes into **one file: `src/content/si
 | Contact details | Fill `contact.phone`, `contact.whatsapp` (e.g. `233240000000`), `contact.email`. |
 | Join requirements | Fill `join.minimumAge`, `join.monthlyDues`, `join.probation`. |
 
-Anything left `null` or empty is hidden. **Colours** are tokens at the top of `src/app/globals.css`.
+Anything left `null` or empty is hidden. **Colours** are tokens at the top of `src/app/globals.css` (brand maroon `#670B20` from the official logo). Logo files live in `public/brand/`.
 
 ## Forms (Bookings & Join Us)
 Submissions are emailed via [Resend](https://resend.com) when these Vercel environment variables are set:

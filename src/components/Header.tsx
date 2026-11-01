@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav, site } from "@/content/site";
-import { Crest } from "./Crest";
+import Image from "next/image";
 import { IconClose, IconMenu } from "./Icons";
 import { socialLinks } from "./Social";
 
@@ -33,7 +33,7 @@ export function Header() {
       <header className="header">
         <div className="container header__inner">
           <Link href="/" className="brand" aria-label={`${site.name}, home`}>
-            <Crest size={46} />
+            <Image src="/brand/mop-emblem.png" alt="" width={50} height={50} className="brand__emblem" priority />
             <span>
               <span className="brand__name">{site.name}</span>
               <span className="brand__sub">

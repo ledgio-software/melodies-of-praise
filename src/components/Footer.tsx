@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { nav, site } from "@/content/site";
 import { socialLinks } from "./Social";
@@ -9,7 +10,7 @@ export function Footer() {
       <div className="container">
         <div className="footer__grid">
           <div>
-            <div className="footer__brand">{site.name}</div>
+            <Image src="/brand/mop-logo-white.png" alt={site.name} width={1089} height={499} className="footer__logo" />
             <p>
               {site.church}, {site.assembly}. Ministering in song since {site.foundedYear}.
             </p>

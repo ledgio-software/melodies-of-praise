@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Crest } from "@/components/Crest";
+import Image from "next/image";
 import { IconCalendar, IconHeart, IconMusic, IconUsers } from "@/components/Icons";
 import { SocialButtons } from "@/components/Social";
 import { site } from "@/content/site";
@@ -15,11 +15,19 @@ export default function Home() {
       <section className="hero">
         {site.photos[0] && <img className="hero__bg" src={site.photos[0].src} alt="" />}
         <div className="container hero__inner">
-          <Crest size={88} className="hero__crest" />
+          <h1>
+            <Image
+              src="/brand/mop-logo-white.png"
+              alt={`${site.name} (${site.shortName})`}
+              width={1089}
+              height={499}
+              className="hero__logo"
+              priority
+            />
+          </h1>
           <span className="eyebrow">
             {site.church} · {site.assembly}
           </span>
-          <h1>{site.name}</h1>
           <p className="hero__tagline">{site.tagline}</p>
           <div className="actions" style={{ justifyContent: "center" }}>
             <Link href="/bookings" className="btn btn--gold">
@@ -89,7 +97,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--navy center">
+      <section className="section section--brand center">
         <div className="container">
           <p className="quote">“{site.scripture.text}”</p>
           <span className="quote__ref">{site.scripture.reference}</span>

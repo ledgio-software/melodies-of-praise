@@ -4,17 +4,17 @@
    colours, change these tokens and the whole site follows.
 ---------------------------------------------------------------- */
 :root {
-  --navy: #14213d;
-  --navy-deep: #0c1529;
-  --burgundy: #7a1f2b;
-  --burgundy-deep: #5c1520;
-  --gold: #b8913a;
-  --gold-light: #d9bd77;
-  --ivory: #faf6ee;
-  --parchment: #f2ead9;
-  --ink: #1f1c18;
-  --muted: #5d564b;
-  --line: #ddd0b4;
+  /* Brand: taken from the official MOP logo (maroon #670B20 and white) */
+  --brand: #670b20;
+  --brand-dark: #4a0716;
+  --brand-deepest: #2e0410;
+  --gold: #b8913a; /* soft accent for ornaments only */
+  --gold-light: #e2c98f;
+  --ivory: #fdfaf6;
+  --parchment: #f6eeea;
+  --ink: #241a1c;
+  --muted: #62575a;
+  --line: #e7d9d3;
   --white: #ffffff;
 
   --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
@@ -23,7 +23,7 @@
   --max: 1120px;
   --narrow: 760px;
   --radius: 2px;
-  --shadow: 0 1px 2px rgb(20 33 61 / 0.06), 0 8px 24px rgb(20 33 61 / 0.08);
+  --shadow: 0 1px 2px rgb(74 7 22 / 0.06), 0 8px 24px rgb(74 7 22 / 0.08);
 }
 
 *,
@@ -53,12 +53,12 @@ img {
 }
 
 a {
-  color: var(--burgundy);
+  color: var(--brand);
   text-underline-offset: 0.18em;
   text-decoration-thickness: 1px;
 }
 a:hover {
-  color: var(--burgundy-deep);
+  color: var(--brand-dark);
 }
 
 :focus-visible {
@@ -73,7 +73,7 @@ h4 {
   font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.15;
-  color: var(--navy);
+  color: var(--brand-dark);
   margin: 0 0 0.5em;
   letter-spacing: 0.005em;
 }
@@ -94,7 +94,7 @@ p {
   position: absolute;
   left: -9999px;
   top: 0;
-  background: var(--navy);
+  background: var(--brand-dark);
   color: var(--white);
   padding: 0.6rem 1rem;
   z-index: 100;
@@ -122,12 +122,12 @@ p {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.section--navy {
-  background: var(--navy);
-  color: #e9e4d8;
+.section--brand {
+  background: var(--brand-dark);
+  color: #f1e6e8;
 }
-.section--navy h2,
-.section--navy h3 {
+.section--brand h2,
+.section--brand h3 {
   color: var(--white);
 }
 .center {
@@ -141,10 +141,10 @@ p {
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--burgundy);
+  color: var(--brand);
   margin-bottom: 0.9rem;
 }
-.section--navy .eyebrow {
+.section--brand .eyebrow {
   color: var(--gold-light);
 }
 
@@ -152,8 +152,8 @@ p {
   font-size: 1.32rem;
   color: var(--muted);
 }
-.section--navy .lead {
-  color: #cfc8b8;
+.section--brand .lead {
+  color: #dccbce;
 }
 
 /* ornamental divider:  ——— ✦ ——— */
@@ -200,9 +200,9 @@ p {
   gap: 0.5rem;
   min-height: 48px;
   padding: 0.7rem 1.6rem;
-  border: 1px solid var(--burgundy);
+  border: 1px solid var(--brand);
   border-radius: var(--radius);
-  background: var(--burgundy);
+  background: var(--brand);
   color: var(--white);
   font-family: var(--font-body);
   font-size: 0.92rem;
@@ -214,28 +214,28 @@ p {
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 .btn:hover {
-  background: var(--burgundy-deep);
-  border-color: var(--burgundy-deep);
+  background: var(--brand-dark);
+  border-color: var(--brand-dark);
   color: var(--white);
 }
 .btn--ghost {
   background: transparent;
-  color: var(--navy);
-  border-color: var(--navy);
+  color: var(--brand-dark);
+  border-color: var(--brand-dark);
 }
 .btn--ghost:hover {
-  background: var(--navy);
-  border-color: var(--navy);
+  background: var(--brand-dark);
+  border-color: var(--brand-dark);
 }
 .btn--gold {
   background: var(--gold);
   border-color: var(--gold);
-  color: var(--navy-deep);
+  color: var(--brand-deepest);
 }
 .btn--gold:hover {
   background: var(--gold-light);
   border-color: var(--gold-light);
-  color: var(--navy-deep);
+  color: var(--brand-deepest);
 }
 .btn--light {
   background: transparent;
@@ -244,7 +244,7 @@ p {
 }
 .btn--light:hover {
   background: var(--white);
-  color: var(--navy);
+  color: var(--brand-dark);
   border-color: var(--white);
 }
 .btn[disabled] {
@@ -262,8 +262,8 @@ p {
 
 /* ---------- header ---------- */
 .topbar {
-  background: var(--navy-deep);
-  color: #c9c2b2;
+  background: var(--brand-deepest);
+  color: #dcc6ca;
   font-size: 0.85rem;
   letter-spacing: 0.06em;
 }
@@ -275,7 +275,7 @@ p {
   padding-bottom: 0.45rem;
 }
 .topbar a {
-  color: #c9c2b2;
+  color: #dcc6ca;
   text-decoration: none;
 }
 .topbar a:hover {
@@ -295,7 +295,7 @@ p {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgb(250 246 238 / 0.97);
+  background: rgb(253 250 246 / 0.97);
   border-bottom: 1px solid var(--line);
   backdrop-filter: saturate(1.2) blur(6px);
 }
@@ -311,10 +311,10 @@ p {
   align-items: center;
   gap: 0.8rem;
   text-decoration: none;
-  color: var(--navy);
+  color: var(--brand-dark);
 }
 .brand:hover {
-  color: var(--navy);
+  color: var(--brand-dark);
 }
 .brand__name {
   display: block;
@@ -357,15 +357,15 @@ p {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--navy);
+  color: var(--brand-dark);
   border-bottom: 1px solid transparent;
   white-space: nowrap;
 }
 .nav__link:hover {
-  color: var(--burgundy);
+  color: var(--brand);
 }
 .nav__link[aria-current="page"] {
-  color: var(--burgundy);
+  color: var(--brand);
   border-bottom-color: var(--gold);
 }
 .nav__toggle {
@@ -375,7 +375,7 @@ p {
   border-radius: var(--radius);
   width: 48px;
   height: 48px;
-  color: var(--navy);
+  color: var(--brand-dark);
   cursor: pointer;
 }
 
@@ -416,8 +416,8 @@ p {
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--navy);
-  color: #ece6d8;
+  background: var(--brand-deepest);
+  color: #f4eaec;
   text-align: center;
   padding: clamp(5rem, 13vw, 9rem) 0 clamp(4.5rem, 11vw, 8rem);
 }
@@ -435,7 +435,7 @@ p {
   inset: 0;
   background:
     radial-gradient(ellipse at 50% 0%, rgb(184 145 58 / 0.22), transparent 60%),
-    linear-gradient(180deg, rgb(12 21 41 / 0.15), rgb(12 21 41 / 0.7));
+    linear-gradient(180deg, rgb(46 4 16 / 0.15), rgb(46 4 16 / 0.7));
   pointer-events: none;
 }
 .hero__inner {
@@ -453,9 +453,32 @@ p {
   font-family: var(--font-display);
   font-style: italic;
   font-size: clamp(1.35rem, 2.8vw, 1.8rem);
-  color: #ddd5c3;
+  color: #ecdcdf;
   max-width: 640px;
   margin: 0 auto 2.25rem;
+}
+.hero__logo {
+  width: min(560px, 86vw);
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+.brand__emblem {
+  width: 50px;
+  height: 50px;
+  flex: none;
+}
+.footer__logo {
+  width: 220px;
+  height: auto;
+  margin-bottom: 1.25rem;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 .hero__crest {
   margin: 0 auto 1.75rem;
@@ -464,8 +487,8 @@ p {
 
 /* page banner for inner pages */
 .banner {
-  background: var(--navy);
-  color: #ddd5c3;
+  background: var(--brand-dark);
+  color: #ecdcdf;
   text-align: center;
   padding: clamp(3.5rem, 8vw, 5.5rem) 0 clamp(3rem, 7vw, 4.5rem);
   position: relative;
@@ -557,14 +580,14 @@ p {
   font-size: 0.78rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--burgundy);
+  color: var(--brand);
   margin-bottom: 0.35rem;
 }
 .fact__value {
   font-family: var(--font-display);
   font-size: 1.65rem;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--brand-dark);
   line-height: 1.2;
 }
 
@@ -594,7 +617,7 @@ p {
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--burgundy);
+  color: var(--brand);
   display: block;
   line-height: 1.2;
 }
@@ -629,7 +652,7 @@ p {
   font-size: 0.82rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--burgundy);
+  color: var(--brand);
 }
 
 /* events */
@@ -656,14 +679,14 @@ p {
   font-size: 2.2rem;
   font-weight: 600;
   line-height: 1;
-  color: var(--navy);
+  color: var(--brand-dark);
 }
 .event__month {
   display: block;
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--burgundy);
+  color: var(--brand);
   margin-top: 0.25rem;
 }
 .event h3 {
@@ -711,7 +734,7 @@ p {
 .video__frame {
   position: relative;
   aspect-ratio: 16 / 9;
-  background: var(--navy-deep);
+  background: var(--brand-deepest);
   border: 1px solid var(--line);
 }
 .video__frame iframe {
@@ -724,7 +747,7 @@ p {
 .video figcaption {
   font-family: var(--font-display);
   font-size: 1.3rem;
-  color: var(--navy);
+  color: var(--brand-dark);
   margin-top: 0.6rem;
 }
 
@@ -742,13 +765,13 @@ p {
   border: 1px solid var(--line);
   background: var(--white);
   text-decoration: none;
-  color: var(--navy);
+  color: var(--brand-dark);
   font-size: 1rem;
   min-height: 44px;
 }
 .social a:hover {
   border-color: var(--gold);
-  color: var(--burgundy);
+  color: var(--brand);
 }
 .center .social {
   justify-content: center;
@@ -800,7 +823,7 @@ p {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.2rem;
-  color: var(--burgundy);
+  color: var(--brand);
   background: var(--white);
 }
 
@@ -813,7 +836,7 @@ p {
   font-size: clamp(2.2rem, 7vw, 3.2rem);
   font-weight: 600;
   letter-spacing: 0.06em;
-  color: var(--navy);
+  color: var(--brand-dark);
   line-height: 1.1;
   margin: 0.4rem 0 0.2rem;
 }
@@ -843,11 +866,11 @@ p {
   font-size: 0.82rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--brand-dark);
   margin-bottom: 0.4rem;
 }
 .field .req {
-  color: var(--burgundy);
+  color: var(--brand);
 }
 .field input,
 .field select,
@@ -857,7 +880,7 @@ p {
   font-size: 1.05rem;
   color: var(--ink);
   background: var(--white);
-  border: 1px solid #cbbd9e;
+  border: 1px solid #d8c3bd;
   border-radius: var(--radius);
   padding: 0.75rem 0.9rem;
   min-height: 48px;
@@ -905,7 +928,7 @@ p {
   border-left-color: #3f7a4a;
 }
 .notice--err {
-  border-left-color: var(--burgundy);
+  border-left-color: var(--brand);
 }
 
 /* map */
@@ -918,8 +941,8 @@ p {
 
 /* ---------- footer ---------- */
 .footer {
-  background: var(--navy-deep);
-  color: #bdb5a4;
+  background: var(--brand-deepest);
+  color: #d2bcc0;
   padding: 4rem 0 0;
   font-size: 1.02rem;
 }
@@ -933,7 +956,7 @@ p {
   margin-bottom: 1rem;
 }
 .footer a {
-  color: #ddd5c3;
+  color: #ecdcdf;
   text-decoration: none;
 }
 .footer a:hover {

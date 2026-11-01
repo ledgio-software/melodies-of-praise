@@ -74,7 +74,7 @@ export default function About() {
             {site.leaders.map((l) => (
               <div key={l.name} className="leader">
                 {l.photo ? (
-                  <Image className="leader__photo" src={l.photo} alt={`${l.title}, ${l.name}`} width={180} height={220} sizes="180px" />
+                  <Image className="leader__photo" src={l.photo} alt={`${l.title}, ${l.name}`} width={180} height={220} sizes="180px" quality={90} />
                 ) : (
                   <div className="leader__placeholder" aria-hidden="true">
                     {initials(l.name)}

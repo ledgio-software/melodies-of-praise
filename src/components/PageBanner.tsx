@@ -16,7 +16,7 @@ export function PageBanner({
   return (
     <section className={image ? "banner banner--photo" : "banner"}>
       {image && (
-        <Image src={image.src} alt="" fill priority sizes="100vw" className="banner__img" aria-hidden="true" />
+        <Image src={image.src} alt="" fill priority sizes="100vw" quality={90} className="banner__img" aria-hidden="true" />
       )}
       <div className="container">
         <span className="eyebrow">{eyebrow}</span>

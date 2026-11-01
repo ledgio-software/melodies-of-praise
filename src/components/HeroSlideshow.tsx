@@ -36,6 +36,7 @@ export function HeroSlideshow({ slides }: { slides: Photo[] }) {
             alt=""
             fill
             sizes="100vw"
+            quality={90}
             priority={i === 0}
             className="hero__slide"
             data-active={i === index}

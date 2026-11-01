@@ -456,12 +456,10 @@ p {
   object-fit: cover;
   object-position: center 35%;
   opacity: 0;
-  transform: scale(1.06);
-  transition: opacity 1.6s ease, transform 7s ease-out;
+  transition: opacity 1.6s ease;
 }
 .hero__slide[data-active="true"] {
   opacity: 1;
-  transform: scale(1);
 }
 /* black + maroon veil keeps the white logo readable over any photo */
 .hero::after {

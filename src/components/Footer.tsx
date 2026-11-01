@@ -40,11 +40,11 @@ export function Footer() {
           </div>
           <div>
             <h4>Follow us</h4>
-            <ul>
-              {socialLinks.map(({ href, label }) => (
+            <ul className="footer__social">
+              {socialLinks.map(({ href, label, Icon }) => (
                 <li key={label}>
                   <a href={href} target="_blank" rel="noopener noreferrer">
-                    {label}
+                    <Icon size={18} /> {label}
                   </a>
                 </li>
               ))}

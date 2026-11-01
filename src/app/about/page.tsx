@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { PageBanner } from "@/components/PageBanner";
 import { site } from "@/content/site";
@@ -69,11 +70,11 @@ export default function About() {
             <h2>Our Leadership</h2>
             <div className="ornament" aria-hidden="true">✦</div>
           </div>
-          <div className="grid grid--3">
+          <div className="leaders">
             {site.leaders.map((l) => (
               <div key={l.name} className="leader">
                 {l.photo ? (
-                  <img className="leader__photo" src={l.photo} alt={l.name} />
+                  <Image className="leader__photo" src={l.photo} alt={`${l.title}, ${l.name}`} width={180} height={220} sizes="180px" />
                 ) : (
                   <div className="leader__placeholder" aria-hidden="true">
                     {initials(l.name)}

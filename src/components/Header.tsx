@@ -18,13 +18,18 @@ export function Header() {
     <>
       <div className="topbar">
         <div className="container">
-          <span>
-            Rehearsals: {site.rehearsal.day}, {site.rehearsal.time} · {site.rehearsal.venue}
+          <span className="topbar__info">
+            <span className="topbar__long">
+              Rehearsals: {site.rehearsal.day}, {site.rehearsal.time} · {site.rehearsal.venue}
+            </span>
+            <span className="topbar__short" aria-hidden="true">
+              Rehearsals {site.rehearsal.day}, {site.rehearsal.time}
+            </span>
           </span>
           <span className="topbar__social">
-            {socialLinks.map(({ href, label }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer">
-                {label}
+            {socialLinks.map(({ href, label, Icon }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${site.name} on ${label}`} title={label}>
+                <Icon size={16} />
               </a>
             ))}
           </span>

@@ -110,6 +110,13 @@ export const site = {
     probation: null as string | null,
   },
 
+  /**
+   * Photos that slide behind the logo on the home page (3–6 is ideal).
+   * Wide, landscape shots work best, e.g. the full choir in robes.
+   * If left empty, the first five gallery photos are used.
+   */
+  heroSlides: [] as Photo[],
+
   events: [] as ChoirEvent[],
   videos: [] as Video[],
   photos: [] as Photo[],

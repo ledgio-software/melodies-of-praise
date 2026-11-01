@@ -1,18 +1,19 @@
 /* ---------------------------------------------------------------
    Melodies of Praise — classic theme
-   Colours are defined once here. When the choir sends its official
-   colours, change these tokens and the whole site follows.
+   Colours are defined once here: change a token and the whole site follows.
 ---------------------------------------------------------------- */
 :root {
-  /* Brand: taken from the official MOP logo (maroon #670B20 and white) */
+  /* Brand colours: maroon (#670B20, from the official logo), black and white */
   --brand: #670b20;
   --brand-dark: #4a0716;
   --brand-deepest: #2e0410;
+  --black: #0b0a0a;
+  --black-soft: #1a1718;
   --gold: #b8913a; /* soft accent for ornaments only */
   --gold-light: #e2c98f;
   --ivory: #fdfaf6;
   --parchment: #f6eeea;
-  --ink: #241a1c;
+  --ink: #151213;
   --muted: #62575a;
   --line: #e7d9d3;
   --white: #ffffff;
@@ -262,7 +263,7 @@ p {
 
 /* ---------- header ---------- */
 .topbar {
-  background: var(--brand-deepest);
+  background: var(--black);
   color: #dcc6ca;
   font-size: 0.85rem;
   letter-spacing: 0.06em;
@@ -416,31 +417,76 @@ p {
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--brand-deepest);
+  background: var(--black);
   color: #f4eaec;
   text-align: center;
-  padding: clamp(5rem, 13vw, 9rem) 0 clamp(4.5rem, 11vw, 8rem);
+  min-height: clamp(560px, 86vh, 880px);
+  display: flex;
+  align-items: center;
+  padding: clamp(4.5rem, 10vw, 7rem) 0 clamp(5rem, 10vw, 7rem);
 }
-.hero__bg {
+.hero__slides {
   position: absolute;
   inset: 0;
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  opacity: 0.32;
 }
+.hero__slide {
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1.6s ease, transform 7s ease-out;
+}
+.hero__slide[data-active="true"] {
+  opacity: 1;
+  transform: scale(1);
+}
+/* black + maroon veil keeps the white logo readable over any photo */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 0%, rgb(184 145 58 / 0.22), transparent 60%),
-    linear-gradient(180deg, rgb(46 4 16 / 0.15), rgb(46 4 16 / 0.7));
+    radial-gradient(ellipse at 50% 45%, rgb(11 10 10 / 0.25), rgb(11 10 10 / 0.6) 80%),
+    linear-gradient(180deg, rgb(11 10 10 / 0.45) 0%, rgb(46 4 16 / 0.35) 55%, rgb(11 10 10 / 0.85) 100%);
   pointer-events: none;
+}
+.hero__dots {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 1.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+}
+.hero__dot {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero__dot::before {
+  content: "";
+  width: 28px;
+  height: 3px;
+  background: rgb(255 255 255 / 0.4);
+  transition: background 0.3s;
+}
+.hero__dot[aria-current="true"]::before {
+  background: var(--white);
+}
+.hero__dot:hover::before {
+  background: rgb(255 255 255 / 0.75);
 }
 .hero__inner {
   position: relative;
   z-index: 1;
+  text-shadow: 0 1px 12px rgb(0 0 0 / 0.45);
 }
 .hero h1 {
   color: var(--white);
@@ -461,6 +507,7 @@ p {
   width: min(560px, 86vw);
   height: auto;
   margin: 0 auto 1.5rem;
+  filter: drop-shadow(0 6px 24px rgb(0 0 0 / 0.5));
 }
 .brand__emblem {
   width: 50px;
@@ -480,14 +527,9 @@ p {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
-.hero__crest {
-  margin: 0 auto 1.75rem;
-  color: var(--gold-light);
-}
-
 /* page banner for inner pages */
 .banner {
-  background: var(--brand-dark);
+  background: var(--black);
   color: #ecdcdf;
   text-align: center;
   padding: clamp(3.5rem, 8vw, 5.5rem) 0 clamp(3rem, 7vw, 4.5rem);
@@ -497,7 +539,9 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% -20%, rgb(184 145 58 / 0.25), transparent 65%);
+  background:
+    radial-gradient(ellipse at 50% -10%, rgb(103 11 32 / 0.85), transparent 70%),
+    linear-gradient(0deg, var(--brand) 0, var(--brand) 3px, transparent 3px);
   pointer-events: none;
 }
 .banner > * {
@@ -941,7 +985,8 @@ p {
 
 /* ---------- footer ---------- */
 .footer {
-  background: var(--brand-deepest);
+  background: var(--black);
+  border-top: 4px solid var(--brand);
   color: #d2bcc0;
   padding: 4rem 0 0;
   font-size: 1.02rem;

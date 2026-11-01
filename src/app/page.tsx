@@ -5,6 +5,7 @@ import { SocialButtons } from "@/components/Social";
 import { site } from "@/content/site";
 import { upcomingEvents } from "@/lib/events";
 import { EventList } from "@/components/EventList";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 
 export const revalidate = 3600;
 
@@ -13,7 +14,7 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        {site.photos[0] && <img className="hero__bg" src={site.photos[0].src} alt="" />}
+        <HeroSlideshow slides={site.heroSlides.length > 0 ? site.heroSlides : site.photos.slice(0, 5)} />
         <div className="container hero__inner">
           <h1>
             <Image

@@ -376,9 +376,9 @@ p {
 }
 .nav__link {
   display: block;
-  padding: 0.5rem 0.6rem;
-  font-size: 0.82rem;
-  letter-spacing: 0.12em;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--brand-dark);
@@ -403,7 +403,7 @@ p {
   cursor: pointer;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1280px) {
   .nav__toggle {
     display: inline-flex;
     align-items: center;
@@ -1107,4 +1107,58 @@ p {
   * {
     transition: none !important;
   }
+}
+
+/* ---------- news ---------- */
+.news-grid {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+.news-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.news-card__img {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 2;
+  background: var(--black);
+  overflow: hidden;
+}
+.news-card__img img { object-fit: cover; transition: transform 0.5s ease; }
+.news-card:hover .news-card__img img { transform: scale(1.03); }
+.news-card__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 40%, var(--brand-dark), var(--black) 75%);
+}
+.news-card__body { padding: 1.4rem 1.5rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+.news-card__date {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 0.5rem;
+}
+.news-card h3 { font-size: 1.55rem; margin-bottom: 0.45em; }
+.news-card h3 a { color: var(--brand-dark); text-decoration: none; }
+.news-card h3 a:hover { color: var(--brand); }
+.news-card p { color: var(--muted); font-size: 1.05rem; flex: 1; }
+.news-card__more { font-size: 0.95rem; text-decoration: none; }
+.news-cover { margin: 0 0 2rem; }
+.news-cover img { width: 100%; height: auto; border: 1px solid var(--line); }
+.news-cover figcaption { font-size: 0.95rem; color: var(--muted); font-style: italic; margin-top: 0.5rem; }
+.news-share { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+
+/* header and top bar get a little more room than page content, for the 10-item menu */
+.header .container,
+.topbar .container {
+  max-width: 1320px;
 }

@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 import { nav, site } from "@/content/site";
 import Image from "next/image";
 import { IconClose, IconMenu } from "./Icons";
+import type { Rehearsal, Social } from "@/lib/content";
 import { socialLinks } from "./Social";
 
-export function Header() {
+export function Header({ rehearsal, social }: { rehearsal: Rehearsal; social: Social }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -20,14 +21,14 @@ export function Header() {
         <div className="container">
           <span className="topbar__info">
             <span className="topbar__long">
-              Rehearsals: {site.rehearsal.day}, {site.rehearsal.time} · {site.rehearsal.venue}
+              Rehearsals: {rehearsal.day}, {rehearsal.time} · {rehearsal.venue}
             </span>
             <span className="topbar__short" aria-hidden="true">
-              Rehearsals {site.rehearsal.day}, {site.rehearsal.time}
+              Rehearsals {rehearsal.day}, {rehearsal.time}
             </span>
           </span>
           <span className="topbar__social">
-            {socialLinks.map(({ href, label, Icon }) => (
+            {socialLinks(social).map(({ href, label, Icon }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={`${site.name} on ${label}`} title={label}>
                 <Icon size={16} />
               </a>

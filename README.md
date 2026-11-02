@@ -4,28 +4,50 @@ Official website of **Melodies of Praise (MOP)**, The Church of Pentecost, Lapaz
 Built with Next.js and deployed on Vercel.
 
 ## Pages
-Home · About (history, milestones, mission & vision, leadership) · Music · Events · Gallery ·
+Home · About (history, milestones, mission & vision, leadership) · News · Music · Events · Gallery ·
 Join Us (form) · Bookings (form) · Give (MTN MoMo) · Contact (map)
 
-## Updating content
-Nearly everything the publicity team sends goes into **one file: `src/content/site.ts`**.
+## Admin dashboard (`/admin`)
+The publicity team manages the site at **/admin**, from a phone or computer:
 
-| To add… | Do this |
+| Section | What it does |
 |---|---|
-| An event | Add `{ title, date: "2026-12-20", time, venue, description }` to `events`. Past events move to “Recent” automatically. |
-| A YouTube video | Add `{ youtubeId, title }` to `videos` (the ID is the part after `watch?v=`). |
-| Photos | Put files in `public/photos/`, then add `{ src: "/photos/name.jpg", alt }` to `photos`. |
-| Home page slideshow | Add 3–6 wide photos to `heroSlides` (same format). If empty, the first five gallery photos slide instead. |
-| A leader | Add `{ name, title, photo }` to `leaders` (photo in `public/photos/leaders/`). |
-| Contact details | Fill `contact.phone`, `contact.whatsapp` (e.g. `233240000000`), `contact.email`. |
-| Join requirements | Fill `join.minimumAge`, `join.monthlyDues`, `join.probation`. |
+| Inbox | Booking requests and Join Us applications from the website, with one-tap WhatsApp / call / email replies |
+| News | Write posts with a cover photo; publish, keep as draft, or schedule for a future date. Shown at /news, one page per story, latest three on the home page |
+| Events | Add, edit, delete events (past ones move to “Recent” automatically) |
+| Photos & slideshow | Upload photos (resized in the browser), choose slideshow / gallery, reorder, pick the page-banner photo |
+| Leaders | Names, titles, portraits and order on the About page |
+| Music videos | Paste a YouTube link to feature it on the Music page |
+| Site settings | Rehearsal time, contact details, social links, MoMo details, Join requirements |
+| Team & logins | Admins add or remove team members and reset passwords (editors can’t) |
 
-Anything left `null` or empty is hidden. **Colours** are tokens at the top of `src/app/globals.css` (brand colours: maroon `#670B20` from the official logo, black and white). Logo files live in `public/brand/`.
+Changes appear on the website immediately.
+
+### One-time setup in Vercel
+1. **Storage → Create Database → Neon** (free) → connect to this project. This sets `DATABASE_URL`.
+2. **Storage → Create → Blob** → connect to this project. This sets `BLOB_READ_WRITE_TOKEN`.
+3. **Settings → Environment Variables** → add `ADMIN_SETUP_CODE` (a long secret phrase).
+4. **Redeploy**, open `/admin/setup`, enter the setup code and create the first admin account.
+5. Add the rest of the team under **Team & logins**.
+
+On first connection the database fills itself from `src/content/site.ts`, so the site looks the same as before.
+Until a database is connected, the public site keeps using `src/content/site.ts` and `/admin` shows these setup steps.
+
+### How it works
+- Content, logins and form submissions live in Postgres (`src/lib/db.ts` creates the tables automatically).
+- Passwords are hashed with scrypt; sessions are random tokens in an http-only cookie (14 days).
+  Failed logins are limited to 8 per email per 15 minutes.
+- Every server action checks the signed-in user (`requireUser`); the Team page requires the admin role.
+- If the database is ever unreachable, the public site falls back to `src/content/site.ts` instead of failing.
+
+## Static content
+Text that rarely changes (history, mission, vision, milestones, scripture) stays in `src/content/site.ts`.
+**Colours** are tokens at the top of `src/app/globals.css` (maroon `#670B20` from the official logo, black and white). Logo files live in `public/brand/`.
 
 ## Forms (Bookings & Join Us)
-Submissions are emailed via [Resend](https://resend.com) when these Vercel environment variables are set:
-`RESEND_API_KEY`, `ENQUIRY_TO_EMAIL`, `ENQUIRY_FROM_EMAIL` (see `.env.example`).
-Until then, the forms open WhatsApp with the details pre-filled (needs `contact.whatsapp`).
+Submissions are saved to the dashboard Inbox when the database is connected. Optionally, a copy is emailed via
+[Resend](https://resend.com) when `RESEND_API_KEY` and `ENQUIRY_TO_EMAIL` are set. If neither is available,
+the forms open WhatsApp with the details pre-filled (needs a WhatsApp number in Site settings).
 
 ## Deploying to Vercel
 1. On vercel.com → **Add New → Project** → import `ledgio-software/melodies-of-praise`.
@@ -36,5 +58,6 @@ Until then, the forms open WhatsApp with the details pre-filled (needs `contact.
 ## Local development
 ```bash
 npm install
-npm run dev
+LOCAL_DB=pglite ADMIN_SETUP_CODE=local-setup-code npm run dev
 ```
+`LOCAL_DB=pglite` runs a real Postgres inside Node (stored in `.pglite/`), and uploads go to `public/uploads/`; both are git-ignored.

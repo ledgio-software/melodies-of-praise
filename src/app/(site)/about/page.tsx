@@ -105,6 +105,6 @@ export default async function About() {
 }
 
 function initials(name: string) {
-  const parts = name.replace(/^(Elder|Pastor|Deacon|Deaconess|Mrs?\.?|Ms\.?|Dr\.?)\s+/i, "").split(/\s+/);
+  const parts = name.replace(/^(Elder|Pastor|Deacon|Deaconess|Miss|Mrs?\.?|Ms\.?|Dr\.?)\s+/i, "").split(/\s+/);
   return (parts[0][0] + (parts[parts.length - 1][0] ?? "")).toUpperCase();
 }

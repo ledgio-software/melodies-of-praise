@@ -140,8 +140,30 @@ async function migrate(run: QueryFn) {
   const claimed = await run(
     `INSERT INTO settings (key, value) VALUES ('seeded', 'true'::jsonb) ON CONFLICT (key) DO NOTHING RETURNING key`,
   );
-  if (claimed.length === 0) return;
+  if (claimed.length > 0) await seed(run);
+  await addLeadersOnce(run);
+}
 
+/**
+ * One-time update (Nov 2026): add the full leadership list to databases that were
+ * set up when only the Patron existed. Runs once per database; leaders already
+ * present (matched by name) are left untouched, so dashboard edits are kept.
+ */
+async function addLeadersOnce(run: QueryFn) {
+  const claimed = await run(
+    `INSERT INTO settings (key, value) VALUES ('leaders_v2', 'true'::jsonb) ON CONFLICT (key) DO NOTHING RETURNING key`,
+  );
+  if (claimed.length === 0) return;
+  const existing = new Set(
+    (await run(`SELECT lower(name) AS name FROM leaders`)).map((r) => String(r.name)),
+  );
+  for (const [i, l] of site.leaders.entries()) {
+    if (existing.has(l.name.toLowerCase())) continue;
+    await run(`INSERT INTO leaders (name, title, photo_url, sort) VALUES ($1, $2, $3, $4)`, [l.name, l.title, l.photo, i]);
+  }
+}
+
+async function seed(run: QueryFn) {
   const settings: Record<string, unknown> = {
     rehearsal: site.rehearsal,
     contact: site.contact,

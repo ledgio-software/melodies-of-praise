@@ -68,9 +68,17 @@ export const site = {
     { year: "Media", text: "Featured on Pent Vars and ministered on platforms within and beyond the area." },
   ],
 
-  /** Leaders: names, titles and photos to come from the choir via WhatsApp. */
+  /** Leadership, in display order. `photo: null` shows the person's initials until a photo is added. */
   leaders: [
     { name: "Elder Micaiah Kofi Tsibuah", title: "Patron", photo: "/photos/leaders/elder-micaiah-kofi-tsibuah.jpg" },
+    { name: "Mr. Benjamin Boateng Asamoah", title: "President", photo: null },
+    { name: "Mrs. Susanna Ofori", title: "Assistant Music Director", photo: "/photos/leaders/susanna-ofori.jpg" },
+    { name: "Mr. Lawrence Frimpong", title: "Assistant Music Director", photo: "/photos/leaders/lawrence-frimpong.jpg" },
+    { name: "Miss Deborah Hammond", title: "General Secretary", photo: "/photos/leaders/deborah-hammond.jpg" },
+    { name: "Miss Josephine Ocran", title: "Financial Secretary", photo: "/photos/leaders/josephine-ocran.jpg" },
+    { name: "Mr. Daniel Asare Asamoah", title: "Prayer Secretary", photo: null },
+    { name: "Miss Esther Frimpong", title: "Head of Publicity", photo: "/photos/leaders/esther-frimpong.jpg" },
+    { name: "Miss Esther Sowah", title: "Executive Member", photo: null },
   ] as Leader[],
 
   rehearsal: {

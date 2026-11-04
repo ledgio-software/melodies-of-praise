@@ -78,7 +78,7 @@ export const site = {
     { name: "Miss Deborah Hammond", title: "General Secretary", photo: "/photos/leaders/deborah-hammond.jpg" },
     { name: "Miss Josephine Ocran", title: "Financial Secretary", photo: "/photos/leaders/josephine-ocran.jpg" },
     { name: "Mr. David Tetteh", title: "Organizing Secretary", photo: "/photos/leaders/david-tetteh.jpg" },
-    { name: "Mr. Daniel Asare Asamoah", title: "Prayer Secretary", photo: null },
+    { name: "Mr. Daniel Asare Asamoah", title: "Prayer Secretary", photo: "/photos/leaders/daniel-asare-asamoah.jpg" },
     { name: "Miss Esther Frimpong", title: "Head of Publicity", photo: "/photos/leaders/esther-frimpong.jpg" },
     { name: "Miss Esther Sowah", title: "Executive Member", photo: null },
   ] as Leader[],

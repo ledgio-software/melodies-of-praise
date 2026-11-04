@@ -141,17 +141,20 @@ async function migrate(run: QueryFn) {
     `INSERT INTO settings (key, value) VALUES ('seeded', 'true'::jsonb) ON CONFLICT (key) DO NOTHING RETURNING key`,
   );
   if (claimed.length > 0) await seed(run);
-  await addLeadersOnce(run);
+  await addLeadersOnce(run, "leaders_v3");
 }
 
 /**
- * One-time update (Nov 2026): add the full leadership list to databases that were
- * set up when only the Patron existed. Runs once per database; leaders already
- * present (matched by name) are left untouched, so dashboard edits are kept.
+ * One-time update: add leaders from src/content/site.ts that a database set up
+ * earlier doesn't have yet (v2: full leadership, v3: Music Director).
+ * Runs once per key and database; leaders already present (matched by name)
+ * are left untouched, so dashboard edits are kept. Bump the key when adding
+ * leaders to site.ts that existing databases should receive.
  */
-async function addLeadersOnce(run: QueryFn) {
+async function addLeadersOnce(run: QueryFn, key: string) {
   const claimed = await run(
-    `INSERT INTO settings (key, value) VALUES ('leaders_v2', 'true'::jsonb) ON CONFLICT (key) DO NOTHING RETURNING key`,
+    `INSERT INTO settings (key, value) VALUES ($1, 'true'::jsonb) ON CONFLICT (key) DO NOTHING RETURNING key`,
+    [key],
   );
   if (claimed.length === 0) return;
   const existing = new Set(
@@ -159,6 +162,8 @@ async function addLeadersOnce(run: QueryFn) {
   );
   for (const [i, l] of site.leaders.entries()) {
     if (existing.has(l.name.toLowerCase())) continue;
+    // make room so the new leader appears in the same position as in site.ts
+    await run(`UPDATE leaders SET sort = sort + 1 WHERE sort >= $1`, [i]);
     await run(`INSERT INTO leaders (name, title, photo_url, sort) VALUES ($1, $2, $3, $4)`, [l.name, l.title, l.photo, i]);
   }
 }

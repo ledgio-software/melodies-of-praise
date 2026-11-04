@@ -72,6 +72,7 @@ export const site = {
   leaders: [
     { name: "Elder Micaiah Kofi Tsibuah", title: "Patron", photo: "/photos/leaders/elder-micaiah-kofi-tsibuah.jpg" },
     { name: "Mr. Benjamin Boateng Asamoah", title: "President", photo: null },
+    { name: "Mr. Isaac Mari Ntiamoah", title: "Music Director", photo: "/photos/leaders/isaac-mari-ntiamoah.jpg" },
     { name: "Mrs. Susanna Ofori", title: "Assistant Music Director", photo: "/photos/leaders/susanna-ofori.jpg" },
     { name: "Mr. Lawrence Frimpong", title: "Assistant Music Director", photo: "/photos/leaders/lawrence-frimpong.jpg" },
     { name: "Miss Deborah Hammond", title: "General Secretary", photo: "/photos/leaders/deborah-hammond.jpg" },

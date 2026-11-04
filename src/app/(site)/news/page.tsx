@@ -18,7 +18,7 @@ export default async function News() {
   const [posts, c] = await Promise.all([listNews(), getContent()]);
   return (
     <>
-      <PageBanner eyebrow="From the choir" title="News" intro="Reports, testimonies and updates from Melodies of Praise." />
+      <PageBanner eyebrow="From the choir" title="News" intro="Reports, testimonies and updates from Melodies of Praise." image={site.pageBanners.news} />
       <section className="section">
         <div className="container">
           {posts.length > 0 ? (

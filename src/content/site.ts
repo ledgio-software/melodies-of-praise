@@ -53,6 +53,17 @@ export const site = {
     reference: "Psalm 105:2",
   },
 
+  /** Photos behind the title at the top of each page (About and Visit Us use the dashboard's banner photo). */
+  pageBanners: {
+    events: { src: "/photos/hero/choir-ministering-purple.jpg", alt: "Melodies of Praise ministering on stage" },
+    music: { src: "/photos/hero/choir-worship-lights.jpg", alt: "The choir and band in worship" },
+    join: { src: "/photos/group/choir-group-mop-shirts.jpg", alt: "Melodies of Praise members together on stage" },
+    bookings: { src: "/photos/hero/choir-ministering-blue.jpg", alt: "The choir ministering under blue stage lights" },
+    give: { src: "/photos/hero/choir-ministering-purple.jpg", alt: "Melodies of Praise ministering on stage" },
+    news: { src: "/photos/hero/choir-ministering-blue.jpg", alt: "The choir ministering under blue stage lights" },
+    gallery: { src: "/photos/hero/choir-worship-lights.jpg", alt: "The choir and band in worship" },
+  },
+
   /** Photos shown side by side behind maroon bands (5 each looks best). */
   photoBands: {
     /** Behind the scripture verse on the home page */

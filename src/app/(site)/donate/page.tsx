@@ -15,7 +15,7 @@ export default async function Donate() {
   const pretty = d.number.replace(/^(\d{3})(\d{3})(\d{4})$/, "$1 $2 $3");
   return (
     <>
-      <PageBanner eyebrow="Support the ministry" title="Give" intro="“Each of you should give what you have decided in your heart to give… for God loves a cheerful giver.” · 2 Corinthians 9:7" />
+      <PageBanner eyebrow="Support the ministry" title="Give" intro="“Each of you should give what you have decided in your heart to give… for God loves a cheerful giver.” · 2 Corinthians 9:7" image={site.pageBanners.give} />
       <section className="section">
         <div className="container narrow">
           <div className="card card--framed momo">

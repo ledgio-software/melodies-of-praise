@@ -27,7 +27,7 @@ export default async function Bookings() {
   const c = await getContent();
   return (
     <>
-      <PageBanner eyebrow="Invitations" title="Invite the Choir" intro="We would be honoured to minister at your special occasion." />
+      <PageBanner eyebrow="Invitations" title="Invite the Choir" intro="We would be honoured to minister at your special occasion." image={site.pageBanners.bookings} />
       <section className="section">
         <div className="container">
           <div className="grid grid--2" style={{ alignItems: "start" }}>

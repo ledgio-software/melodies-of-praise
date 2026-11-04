@@ -13,7 +13,7 @@ export default async function Gallery() {
   const c = await getContent();
   return (
     <>
-      <PageBanner eyebrow="Moments" title="Gallery" intro="Snapshots of ministry, fellowship and celebration." />
+      <PageBanner eyebrow="Moments" title="Gallery" intro="Snapshots of ministry, fellowship and celebration." image={site.pageBanners.gallery} />
       <section className="section">
         <div className="container">
           {c.gallery.length > 0 ? (

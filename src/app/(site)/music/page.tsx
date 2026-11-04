@@ -13,7 +13,7 @@ export default async function Music() {
   const c = await getContent();
   return (
     <>
-      <PageBanner eyebrow="Listen & watch" title="Our Music" intro="Songs of praise and worship ministered to bless the body of Christ." />
+      <PageBanner eyebrow="Listen & watch" title="Our Music" intro="Songs of praise and worship ministered to bless the body of Christ." image={site.pageBanners.music} />
       <section className="section">
         <div className="container">
           {c.videos.length > 0 ? (

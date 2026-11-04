@@ -16,6 +16,8 @@ export const revalidate = 3600;
 export default async function Home() {
   const c = await getContent();
   const news = await listNews(3);
+  // the group photo (page banner), falling back to the first slideshow photo
+  const welcomePhoto = c.banner ?? c.heroSlides[0] ?? null;
   const events = upcomingEvents(c.events).slice(0, 3);
   return (
     <>
@@ -48,18 +50,25 @@ export default async function Home() {
       </section>
 
       <section className="section">
-        <div className="container narrow center">
-          <span className="eyebrow">Welcome</span>
-          <h2>Singing to bless the body of Christ</h2>
-          <div className="ornament" aria-hidden="true">✦</div>
-          <p className="lead">{site.history[0]}</p>
-          <p>
-            Since {site.foundedYear}, MOP has grown from a district choir into a vibrant ministry, serving across the
-            area and beyond. By God’s grace we have won the area-level music competition and featured on Pent Vars.
-          </p>
-          <Link href="/about" className="btn btn--ghost">
-            Read our story
-          </Link>
+        <div className={`container ${welcomePhoto ? "welcome" : "narrow center"}`}>
+          {welcomePhoto && (
+            <figure className="welcome__photo">
+              <Image src={welcomePhoto.src} alt={welcomePhoto.alt} fill sizes="(max-width: 900px) 100vw, 540px" quality={90} />
+            </figure>
+          )}
+          <div>
+            <span className="eyebrow">Welcome</span>
+            <h2>Singing to bless the body of Christ</h2>
+            <div className={`ornament ${welcomePhoto ? "ornament--left" : ""}`} aria-hidden="true">✦</div>
+            <p className="lead">{site.history[0]}</p>
+            <p>
+              Since {site.foundedYear}, MOP has grown from a district choir into a vibrant ministry, serving across the
+              area and beyond. By God’s grace we have won the area-level music competition and featured on Pent Vars.
+            </p>
+            <Link href="/about" className="btn btn--ghost">
+              Read our story
+            </Link>
+          </div>
         </div>
       </section>
 

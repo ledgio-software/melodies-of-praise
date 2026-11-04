@@ -141,12 +141,12 @@ async function migrate(run: QueryFn) {
     `INSERT INTO settings (key, value) VALUES ('seeded', 'true'::jsonb) ON CONFLICT (key) DO NOTHING RETURNING key`,
   );
   if (claimed.length > 0) await seed(run);
-  await addLeadersOnce(run, "leaders_v3");
+  await addLeadersOnce(run, "leaders_v4");
 }
 
 /**
  * One-time update: add leaders from src/content/site.ts that a database set up
- * earlier doesn't have yet (v2: full leadership, v3: Music Director).
+ * earlier doesn't have yet (v2: full leadership, v3: Music Director, v4: Organizing Secretary).
  * Runs once per key and database; leaders already present (matched by name)
  * are left untouched, so dashboard edits are kept. Bump the key when adding
  * leaders to site.ts that existing databases should receive.

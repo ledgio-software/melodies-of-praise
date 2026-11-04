@@ -1162,3 +1162,51 @@ p {
 .topbar .container {
   max-width: 1320px;
 }
+
+/* ---------- scripture band with five photos behind the verse ---------- */
+.verse {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(300px, 38vw, 420px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.verse__photos {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  background: var(--brand-deepest);
+}
+.verse__photo {
+  position: relative;
+  overflow: hidden;
+}
+.verse__photo img {
+  object-fit: cover;
+  object-position: center 20%;
+  filter: grayscale(0.35);
+}
+/* maroon veil keeps the verse readable over the faces */
+.verse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgb(74 7 22 / 0.88), rgb(74 7 22 / 0.68) 70%),
+    linear-gradient(180deg, rgb(46 4 16 / 0.35), rgb(46 4 16 / 0.35));
+  pointer-events: none;
+}
+.verse__text {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 14px rgb(0 0 0 / 0.45);
+}
+.verse__text .lead {
+  color: #f1e3e6;
+}
+.verse__text .btn {
+  text-shadow: none;
+}

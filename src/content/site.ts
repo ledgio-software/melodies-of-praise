@@ -53,6 +53,26 @@ export const site = {
     reference: "Psalm 105:2",
   },
 
+  /** Photos shown side by side behind maroon bands (5 each looks best). */
+  photoBands: {
+    /** Behind the scripture verse on the home page */
+    verse: [
+      "/photos/leaders/benjamin-boateng-asamoah.jpg",
+      "/photos/leaders/isaac-mari-ntiamoah.jpg",
+      "/photos/leaders/susanna-ofori.jpg",
+      "/photos/leaders/lawrence-frimpong.jpg",
+      "/photos/leaders/esther-frimpong.jpg",
+    ],
+    /** Behind "Minister with us" at the end of the About page */
+    ministerWithUs: [
+      "/photos/leaders/elder-micaiah-kofi-tsibuah.jpg",
+      "/photos/leaders/deborah-hammond.jpg",
+      "/photos/leaders/josephine-ocran.jpg",
+      "/photos/leaders/david-tetteh.jpg",
+      "/photos/leaders/daniel-asare-asamoah.jpg",
+    ],
+  },
+
   history: [
     "Melodies of Praise, popularly known as MOP, is a singing group within The Church of Pentecost, established with a passion for ministering Christian songs to bless the body of Christ, win souls, and bring glory to the name of our Lord Jesus Christ.",
     "The choir has been in existence since 2016, when it was established by our former Asofo Maame, Dorothy Nyame, with the support and assistance of Pastor Patrick Nyame. It was formed as a district choir with the vision of bringing together individuals with a passion and interest in music to serve God through praise and worship.",
@@ -71,14 +91,16 @@ export const site = {
   /** Leadership, in display order. `photo: null` shows the person's initials until a photo is added. */
   leaders: [
     { name: "Elder Micaiah Kofi Tsibuah", title: "Patron", photo: "/photos/leaders/elder-micaiah-kofi-tsibuah.jpg" },
-    { name: "Mr. Benjamin Boateng Asamoah", title: "President", photo: null },
+    { name: "Mr. Benjamin Boateng Asamoah", title: "President", photo: "/photos/leaders/benjamin-boateng-asamoah.jpg" },
+    { name: "Mr. Isaac Mari Ntiamoah", title: "Music Director", photo: "/photos/leaders/isaac-mari-ntiamoah.jpg" },
     { name: "Mrs. Susanna Ofori", title: "Assistant Music Director", photo: "/photos/leaders/susanna-ofori.jpg" },
     { name: "Mr. Lawrence Frimpong", title: "Assistant Music Director", photo: "/photos/leaders/lawrence-frimpong.jpg" },
     { name: "Miss Deborah Hammond", title: "General Secretary", photo: "/photos/leaders/deborah-hammond.jpg" },
     { name: "Miss Josephine Ocran", title: "Financial Secretary", photo: "/photos/leaders/josephine-ocran.jpg" },
-    { name: "Mr. Daniel Asare Asamoah", title: "Prayer Secretary", photo: null },
+    { name: "Mr. David Tetteh", title: "Organizing Secretary", photo: "/photos/leaders/david-tetteh.jpg" },
+    { name: "Mr. Daniel Asare Asamoah", title: "Prayer Secretary", photo: "/photos/leaders/daniel-asare-asamoah.jpg" },
     { name: "Miss Esther Frimpong", title: "Head of Publicity", photo: "/photos/leaders/esther-frimpong.jpg" },
-    { name: "Miss Esther Sowah", title: "Executive Member", photo: null },
+    { name: "Miss Esther Sowah", title: "Executive Member", photo: "/photos/leaders/esther-sowah.jpg" },
   ] as Leader[],
 
   rehearsal: {

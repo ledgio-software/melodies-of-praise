@@ -25,7 +25,7 @@ export default async function Join() {
   const { minimumAge, monthlyDues, probation } = c.join;
   return (
     <>
-      <PageBanner eyebrow="New voices welcome" title="Join the Choir" intro="If God has placed a song in your heart, come and serve with us." />
+      <PageBanner eyebrow="New voices welcome" title="Join the Choir" intro="If God has placed a song in your heart, come and serve with us." image={site.pageBanners.join} />
       <section className="section">
         <div className="container">
           <div className="grid grid--2" style={{ alignItems: "start" }}>

@@ -19,7 +19,7 @@ export default async function Events() {
   const past = pastEvents(c.events).slice(0, 6);
   return (
     <>
-      <PageBanner eyebrow="Diary" title="Events" intro="Come and worship with us. All are welcome." />
+      <PageBanner eyebrow="Diary" title="Events" intro="Come and worship with us. All are welcome." image={site.pageBanners.events} />
       <section className="section">
         <div className="container narrow">
           <h2>Upcoming</h2>

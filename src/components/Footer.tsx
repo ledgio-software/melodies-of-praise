@@ -10,16 +10,16 @@ export function Footer({ rehearsal, social }: { rehearsal: Rehearsal; social: So
     <footer className="footer">
       <div className="container">
         <div className="footer__grid">
-          <div>
+          <div className="footer__brand-col">
             <Image src="/brand/mop-logo-white.png" alt={site.name} width={1089} height={499} className="footer__logo" />
             <p>
               {site.church}, {site.assembly}. Ministering in song since {site.foundedYear}.
             </p>
-            <p style={{ fontStyle: "italic" }}>
+            <p className="footer__verse">
               “{site.scripture.text}” · {site.scripture.reference}
             </p>
           </div>
-          <div>
+          <div className="footer__links">
             <h4>Explore</h4>
             <ul>
               {nav.slice(0, 6).map((n) => (
@@ -29,7 +29,7 @@ export function Footer({ rehearsal, social }: { rehearsal: Rehearsal; social: So
               ))}
             </ul>
           </div>
-          <div>
+          <div className="footer__links">
             <h4>Get involved</h4>
             <ul>
               {nav.slice(6).map((n) => (
@@ -39,13 +39,13 @@ export function Footer({ rehearsal, social }: { rehearsal: Rehearsal; social: So
               ))}
             </ul>
           </div>
-          <div>
+          <div className="footer__follow">
             <h4>Follow us</h4>
             <ul className="footer__social">
               {socialLinks(social).map(({ href, label, Icon }) => (
                 <li key={label}>
-                  <a href={href} target="_blank" rel="noopener noreferrer">
-                    <Icon size={18} /> {label}
+                  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={`${site.name} on ${label}`}>
+                    <Icon size={18} /> <span className="footer__social-label">{label}</span>
                   </a>
                 </li>
               ))}

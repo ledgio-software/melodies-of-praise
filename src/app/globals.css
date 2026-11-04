@@ -605,8 +605,13 @@ p {
 .banner--photo::after {
   z-index: 1;
   background:
-    linear-gradient(180deg, rgb(11 10 10 / 0.5) 0%, rgb(46 4 16 / 0.45) 60%, rgb(11 10 10 / 0.85) 100%),
-    linear-gradient(0deg, var(--brand) 0, var(--brand) 3px, transparent 3px);
+    linear-gradient(0deg, var(--brand) 0, var(--brand) 3px, transparent 3px),
+    /* soft darker glow behind the centred text, for bright stage-light photos */
+    radial-gradient(ellipse 60% 55% at 50% 50%, rgb(11 10 10 / 0.45), transparent 75%),
+    linear-gradient(180deg, rgb(11 10 10 / 0.5) 0%, rgb(46 4 16 / 0.45) 60%, rgb(11 10 10 / 0.85) 100%);
+}
+.banner--photo p {
+  color: #f4e9eb;
 }
 
 /* ---------- cards & panels ---------- */
@@ -1039,11 +1044,29 @@ p {
 
 /* ---------- footer ---------- */
 .footer {
+  position: relative;
+  overflow: hidden;
   background: var(--black);
   border-top: 4px solid var(--brand);
   color: #d2bcc0;
   padding: 4rem 0 0;
   font-size: 1.02rem;
+}
+/* the MOP logo repeated faintly across the footer, alternate rows offset like brickwork */
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* a 2x tile holding two spaced logos in a brick layout, shown at half size */
+  background-image: url("/brand/footer-pattern.png");
+  background-size: 420px 250px;
+  background-repeat: repeat;
+  opacity: 0.06;
+  pointer-events: none;
+}
+.footer > .container {
+  position: relative;
+  z-index: 1;
 }
 .footer h4 {
   color: var(--gold-light);
@@ -1379,5 +1402,79 @@ p {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ---------- compact footer on phones and small tablets ---------- */
+@media (max-width: 819px) {
+  .footer {
+    padding-top: 2.5rem;
+    font-size: 0.98rem;
+  }
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 1.5rem;
+  }
+  .footer__brand-col,
+  .footer__follow {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+  .footer__brand-col .footer__logo {
+    width: 170px;
+    margin: 0 auto 0.9rem;
+  }
+  .footer__brand-col p {
+    margin: 0;
+  }
+  .footer__verse {
+    display: none;
+  }
+  .footer h4 {
+    margin-bottom: 0.6rem;
+  }
+  .footer li {
+    margin-bottom: 0.3rem;
+  }
+  .footer__links a {
+    display: inline-block;
+    padding: 0.2rem 0;
+  }
+  /* social links become a row of round icon buttons */
+  .footer__social {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .footer__social li {
+    margin: 0;
+  }
+  .footer__social a {
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    gap: 0;
+  }
+  .footer__social a:hover {
+    background: var(--brand);
+    border-color: var(--brand);
+  }
+  .footer__social-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .footer__bottom {
+    margin-top: 1.75rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
   }
 }

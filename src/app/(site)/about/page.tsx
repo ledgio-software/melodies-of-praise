@@ -49,22 +49,20 @@ export default async function About() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="grid grid--2">
-            <div className="card card--framed">
-              <span className="eyebrow">Why we sing</span>
-              <h3>Our Mission</h3>
-              <p>{site.mission}</p>
-            </div>
-            <div className="card card--framed">
-              <span className="eyebrow">Where we are going</span>
-              <h3>Our Vision</h3>
-              <p>{site.vision}</p>
-            </div>
+      <PhotoBand photos={site.photoBands.missionVision}>
+        <div className="grid grid--2 verse__cards">
+          <div className="card card--framed">
+            <span className="eyebrow">Why we sing</span>
+            <h3>Our Mission</h3>
+            <p>{site.mission}</p>
+          </div>
+          <div className="card card--framed">
+            <span className="eyebrow">Where we are going</span>
+            <h3>Our Vision</h3>
+            <p>{site.vision}</p>
           </div>
         </div>
-      </section>
+      </PhotoBand>
 
       <section className="section section--parchment">
         <div className="container">

@@ -63,6 +63,14 @@ export const site = {
       "/photos/leaders/lawrence-frimpong.jpg",
       "/photos/leaders/esther-frimpong.jpg",
     ],
+    /** Behind Mission & Vision on the About page (the home-page set, so no face repeats on About) */
+    missionVision: [
+      "/photos/leaders/benjamin-boateng-asamoah.jpg",
+      "/photos/leaders/isaac-mari-ntiamoah.jpg",
+      "/photos/leaders/susanna-ofori.jpg",
+      "/photos/leaders/lawrence-frimpong.jpg",
+      "/photos/leaders/esther-frimpong.jpg",
+    ],
     /** Behind "Minister with us" at the end of the About page */
     ministerWithUs: [
       "/photos/leaders/elder-micaiah-kofi-tsibuah.jpg",

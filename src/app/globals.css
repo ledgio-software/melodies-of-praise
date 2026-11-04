@@ -1210,3 +1210,20 @@ p {
 .verse__text .btn {
   text-shadow: none;
 }
+/* white cards sitting on a photo band (Mission & Vision) */
+.verse__cards {
+  width: 100%;
+  text-align: left;
+  text-shadow: none;
+}
+.verse__cards .card {
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.35);
+  /* the band's white text colours must not leak into the white cards */
+  color: var(--ink);
+}
+.verse__cards .card h3 {
+  color: var(--brand-dark);
+}
+.verse__cards .card .eyebrow {
+  color: var(--brand);
+}

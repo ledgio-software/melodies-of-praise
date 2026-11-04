@@ -141,15 +141,17 @@ async function migrate(run: QueryFn) {
     `INSERT INTO settings (key, value) VALUES ('seeded', 'true'::jsonb) ON CONFLICT (key) DO NOTHING RETURNING key`,
   );
   if (claimed.length > 0) await seed(run);
-  await addLeadersOnce(run, "leaders_v4");
+  await addLeadersOnce(run, "leaders_v5");
 }
 
 /**
  * One-time update: add leaders from src/content/site.ts that a database set up
- * earlier doesn't have yet (v2: full leadership, v3: Music Director, v4: Organizing Secretary).
- * Runs once per key and database; leaders already present (matched by name)
- * are left untouched, so dashboard edits are kept. Bump the key when adding
- * leaders to site.ts that existing databases should receive.
+ * earlier doesn't have yet (v2: full leadership, v3: Music Director, v4: Organizing Secretary,
+ * v5: President's photo). Also fills in photos for existing leaders who have none.
+ * Runs once per key and database. Leaders already present (matched by name) are
+ * otherwise left untouched, so dashboard edits and uploaded photos are kept.
+ * Bump the key when adding leaders or photos to site.ts that existing databases
+ * should receive.
  */
 async function addLeadersOnce(run: QueryFn, key: string) {
   const claimed = await run(
@@ -161,7 +163,11 @@ async function addLeadersOnce(run: QueryFn, key: string) {
     (await run(`SELECT lower(name) AS name FROM leaders`)).map((r) => String(r.name)),
   );
   for (const [i, l] of site.leaders.entries()) {
-    if (existing.has(l.name.toLowerCase())) continue;
+    if (existing.has(l.name.toLowerCase())) {
+      // only fill an empty photo; never replace one uploaded from the dashboard
+      if (l.photo) await run(`UPDATE leaders SET photo_url = $1 WHERE lower(name) = $2 AND photo_url IS NULL`, [l.photo, l.name.toLowerCase()]);
+      continue;
+    }
     // make room so the new leader appears in the same position as in site.ts
     await run(`UPDATE leaders SET sort = sort + 1 WHERE sort >= $1`, [i]);
     await run(`INSERT INTO leaders (name, title, photo_url, sort) VALUES ($1, $2, $3, $4)`, [l.name, l.title, l.photo, i]);

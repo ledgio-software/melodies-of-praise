@@ -1204,3 +1204,9 @@ p {
   z-index: 1;
   text-shadow: 0 2px 14px rgb(0 0 0 / 0.45);
 }
+.verse__text .lead {
+  color: #f1e3e6;
+}
+.verse__text .btn {
+  text-shadow: none;
+}

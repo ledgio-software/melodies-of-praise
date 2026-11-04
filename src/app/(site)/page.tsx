@@ -8,6 +8,7 @@ import { upcomingEvents } from "@/lib/events";
 import { EventList } from "@/components/EventList";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { NewsCards } from "@/components/NewsCards";
+import { PhotoBand } from "@/components/PhotoBand";
 import { listNews } from "@/lib/news";
 
 export const revalidate = 3600;
@@ -103,19 +104,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section section--brand center verse">
-        <div className="verse__photos" aria-hidden="true">
-          {site.scripture.background.map((src) => (
-            <div key={src} className="verse__photo">
-              <Image src={src} alt="" fill sizes="(max-width: 720px) 20vw, 280px" />
-            </div>
-          ))}
-        </div>
-        <div className="container verse__text">
-          <p className="quote">“{site.scripture.text}”</p>
-          <span className="quote__ref">{site.scripture.reference}</span>
-        </div>
-      </section>
+      <PhotoBand photos={site.photoBands.verse}>
+        <p className="quote">“{site.scripture.text}”</p>
+        <span className="quote__ref">{site.scripture.reference}</span>
+      </PhotoBand>
 
       <section className="section">
         <div className="container">

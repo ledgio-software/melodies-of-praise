@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PageBanner } from "@/components/PageBanner";
+import { PhotoBand } from "@/components/PhotoBand";
 import { getContent } from "@/lib/content";
 import { site } from "@/content/site";
 
@@ -90,16 +91,16 @@ export default async function About() {
         </div>
       </section>
 
-      <section className="section center">
-        <div className="container narrow">
+      <PhotoBand photos={site.photoBands.ministerWithUs}>
+        <div className="narrow" style={{ margin: "0 auto" }}>
           <h2>Minister with us</h2>
           <p className="lead">Whether you would like to sing with us or invite us to your programme, we would love to hear from you.</p>
           <div className="actions">
-            <Link href="/join" className="btn">Join the choir</Link>
-            <Link href="/bookings" className="btn btn--ghost">Invite the choir</Link>
+            <Link href="/join" className="btn btn--gold">Join the choir</Link>
+            <Link href="/bookings" className="btn btn--light">Invite the choir</Link>
           </div>
         </div>
-      </section>
+      </PhotoBand>
     </>
   );
 }

@@ -108,6 +108,7 @@ export const site = {
     { name: "Mr. David Tetteh", title: "Organizing Secretary", photo: "/photos/leaders/david-tetteh.jpg" },
     { name: "Mr. Daniel Asare Asamoah", title: "Prayer Secretary", photo: "/photos/leaders/daniel-asare-asamoah.jpg" },
     { name: "Miss Esther Frimpong", title: "Head of Publicity", photo: "/photos/leaders/esther-frimpong.jpg" },
+    { name: "Mrs. Ruth Asamoah", title: "Head of Costume", photo: "/photos/leaders/ruth-asamoah.jpg" },
     { name: "Miss Esther Sowah", title: "Executive Member", photo: "/photos/leaders/esther-sowah.jpg" },
   ] as Leader[],
 

@@ -103,8 +103,15 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="section section--brand center">
-        <div className="container">
+      <section className="section section--brand center verse">
+        <div className="verse__photos" aria-hidden="true">
+          {site.scripture.background.map((src) => (
+            <div key={src} className="verse__photo">
+              <Image src={src} alt="" fill sizes="(max-width: 720px) 20vw, 280px" />
+            </div>
+          ))}
+        </div>
+        <div className="container verse__text">
           <p className="quote">“{site.scripture.text}”</p>
           <span className="quote__ref">{site.scripture.reference}</span>
         </div>

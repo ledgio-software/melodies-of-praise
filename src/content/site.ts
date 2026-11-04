@@ -51,6 +51,14 @@ export const site = {
   scripture: {
     text: "Sing to him, sing praise to him; tell of all his wonderful acts.",
     reference: "Psalm 105:2",
+    /** Five photos shown side by side behind the verse on the home page. */
+    background: [
+      "/photos/leaders/benjamin-boateng-asamoah.jpg",
+      "/photos/leaders/isaac-mari-ntiamoah.jpg",
+      "/photos/leaders/susanna-ofori.jpg",
+      "/photos/leaders/lawrence-frimpong.jpg",
+      "/photos/leaders/esther-frimpong.jpg",
+    ],
   },
 
   history: [

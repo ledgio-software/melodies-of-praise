@@ -35,7 +35,8 @@ export const staticContent: Content = {
   videos: site.videos,
   leaders: site.leaders,
   heroSlides: site.heroSlides,
-  gallery: site.photos,
+  // until gallery photos are added, show the slideshow photos
+  gallery: site.photos.length > 0 ? site.photos : site.heroSlides,
 };
 
 export async function getSetting<T>(key: string, fallback: T): Promise<T> {

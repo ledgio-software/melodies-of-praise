@@ -1210,3 +1210,174 @@ p {
 .verse__text .btn {
   text-shadow: none;
 }
+/* white cards sitting on a photo band (Mission & Vision) */
+.verse__cards {
+  width: 100%;
+  text-align: left;
+  text-shadow: none;
+}
+.verse__cards .card {
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.35);
+  /* the band's white text colours must not leak into the white cards */
+  color: var(--ink);
+}
+.verse__cards .card h3 {
+  color: var(--brand-dark);
+}
+.verse__cards .card .eyebrow {
+  color: var(--brand);
+}
+
+/* ---------- home: welcome with a framed photo ---------- */
+.welcome {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .welcome {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.welcome__photo {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--gold);
+  padding: 10px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+.welcome__photo img {
+  object-fit: cover;
+  padding: 10px;
+}
+/* a second gold frame offset behind the photo */
+.welcome__photo::before {
+  content: "";
+  position: absolute;
+  inset: 18px -18px -18px 18px;
+  border: 1px solid var(--gold);
+  z-index: -1;
+}
+@media (max-width: 600px) {
+  .welcome__photo::before {
+    inset: 10px -10px -10px 10px;
+  }
+}
+
+/* ---------- gallery grid and full-screen viewer ---------- */
+.gallery__item {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: var(--parchment);
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.gallery__item img {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.gallery__item:hover img,
+.gallery__item:focus-visible img {
+  transform: scale(1.04);
+}
+.lightbox {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgb(11 10 10 / 0.95);
+  color: var(--white);
+}
+.lightbox::backdrop {
+  background: rgb(11 10 10 / 0.6);
+}
+.lightbox__stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 1rem 2rem;
+}
+.lightbox__figure {
+  margin: 0;
+  max-width: min(1400px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lightbox__img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 9rem);
+  object-fit: contain;
+}
+.lightbox__figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  color: #e7d9dc;
+  text-align: center;
+}
+.lightbox__count {
+  margin-left: 0.75rem;
+  color: var(--gold-light);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+.lightbox__nav,
+.lightbox__close {
+  position: absolute;
+  background: rgb(255 255 255 / 0.1);
+  color: var(--white);
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox__nav:hover,
+.lightbox__close:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+.lightbox__nav--prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+.lightbox__nav--next { right: 1rem; top: 50%; transform: translateY(-50%); }
+.lightbox__close { top: 0.75rem; right: 1rem; }
+
+/* ---------- gentle reveal on scroll (classes are added by ScrollReveal) ---------- */
+/* hiding is instant (no transition), only the fade-in animates */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s ease var(--reveal-delay, 0ms),
+    transform 0.7s ease var(--reveal-delay, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

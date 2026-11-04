@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GalleryGrid } from "@/components/GalleryGrid";
 import { PageBanner } from "@/components/PageBanner";
 import { getContent } from "@/lib/content";
 import { site } from "@/content/site";
@@ -16,13 +17,7 @@ export default async function Gallery() {
       <section className="section">
         <div className="container">
           {c.gallery.length > 0 ? (
-            <div className="gallery">
-              {c.gallery.map((p) => (
-                <figure key={p.src}>
-                  <img src={p.src} alt={p.alt} loading="lazy" />
-                </figure>
-              ))}
-            </div>
+            <GalleryGrid photos={c.gallery} />
           ) : (
             <div className="empty">
               <h3>Photos coming soon</h3>

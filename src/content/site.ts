@@ -63,6 +63,14 @@ export const site = {
       "/photos/leaders/lawrence-frimpong.jpg",
       "/photos/leaders/esther-frimpong.jpg",
     ],
+    /** Behind Mission & Vision on the About page (the home-page set, so no face repeats on About) */
+    missionVision: [
+      "/photos/leaders/benjamin-boateng-asamoah.jpg",
+      "/photos/leaders/isaac-mari-ntiamoah.jpg",
+      "/photos/leaders/susanna-ofori.jpg",
+      "/photos/leaders/lawrence-frimpong.jpg",
+      "/photos/leaders/esther-frimpong.jpg",
+    ],
     /** Behind "Minister with us" at the end of the About page */
     ministerWithUs: [
       "/photos/leaders/elder-micaiah-kofi-tsibuah.jpg",
@@ -100,6 +108,7 @@ export const site = {
     { name: "Mr. David Tetteh", title: "Organizing Secretary", photo: "/photos/leaders/david-tetteh.jpg" },
     { name: "Mr. Daniel Asare Asamoah", title: "Prayer Secretary", photo: "/photos/leaders/daniel-asare-asamoah.jpg" },
     { name: "Miss Esther Frimpong", title: "Head of Publicity", photo: "/photos/leaders/esther-frimpong.jpg" },
+    { name: "Mrs. Ruth Asamoah", title: "Head of Costume", photo: "/photos/leaders/ruth-asamoah.jpg" },
     { name: "Miss Esther Sowah", title: "Executive Member", photo: "/photos/leaders/esther-sowah.jpg" },
   ] as Leader[],
 

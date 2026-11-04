@@ -141,13 +141,14 @@ async function migrate(run: QueryFn) {
     `INSERT INTO settings (key, value) VALUES ('seeded', 'true'::jsonb) ON CONFLICT (key) DO NOTHING RETURNING key`,
   );
   if (claimed.length > 0) await seed(run);
-  await addLeadersOnce(run, "leaders_v6");
+  await addLeadersOnce(run, "leaders_v7");
 }
 
 /**
  * One-time update: add leaders from src/content/site.ts that a database set up
  * earlier doesn't have yet (v2: full leadership, v3: Music Director, v4: Organizing Secretary,
- * v5: President's photo, v6: Prayer Secretary's photo). Also fills in photos for existing leaders who have none.
+ * v5: President's photo, v6: Prayer Secretary's photo,
+ * v7: Executive Member's photo). Also fills in photos for existing leaders who have none.
  * Runs once per key and database. Leaders already present (matched by name) are
  * otherwise left untouched, so dashboard edits and uploaded photos are kept.
  * Bump the key when adding leaders or photos to site.ts that existing databases

@@ -14,7 +14,37 @@ export default async function Music() {
   return (
     <>
       <PageBanner eyebrow="Listen & watch" title="Our Music" intro="Songs of praise and worship ministered to bless the body of Christ." image={site.pageBanners.music} />
-      <section className="section">
+      {site.clips.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="center">
+              <span className="eyebrow">In ministry</span>
+              <h2>Watch the choir</h2>
+              <div className="ornament" aria-hidden="true">✦</div>
+            </div>
+            <div className="clips">
+              {site.clips.map((clip) => (
+                <figure key={clip.src} className="clip">
+                  <video
+                    className="clip__video"
+                    src={clip.src}
+                    poster={clip.poster}
+                    controls
+                    playsInline
+                    preload="none"
+                    aria-label={clip.title}
+                  />
+                  <figcaption>
+                    {clip.title}
+                    {clip.credit && <span className="clip__credit">{clip.credit}</span>}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      <section className={`section ${site.clips.length > 0 ? "section--parchment" : ""}`}>
         <div className="container">
           {c.videos.length > 0 ? (
             <div className="grid grid--2">

@@ -180,6 +180,22 @@ export const site = {
 
   events: [] as ChoirEvent[],
   videos: [] as Video[],
+
+  /** Short phone videos hosted on the site itself (portrait), shown on the Music page. */
+  clips: [
+    {
+      src: "/videos/live-ministration-lapaz-central.mp4",
+      poster: "/videos/live-ministration-lapaz-central.jpg",
+      title: "Live ministration at Lapaz Central",
+      credit: null as string | null,
+    },
+    {
+      src: "/videos/behind-the-scenes.mp4",
+      poster: "/videos/behind-the-scenes.jpg",
+      title: "Behind the scenes",
+      credit: "Video: Gospel Concept Channel",
+    },
+  ],
   photos: [] as Photo[],
 };
 

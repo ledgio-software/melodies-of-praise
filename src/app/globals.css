@@ -1478,3 +1478,39 @@ p {
     font-size: 0.85rem;
   }
 }
+
+/* ---------- portrait phone videos on the Music page ---------- */
+.clips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+.clip {
+  margin: 0;
+  width: min(100%, 340px);
+}
+.clip__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background: var(--black);
+  border: 1px solid var(--gold);
+  padding: 6px;
+  box-shadow: var(--shadow);
+}
+.clip figcaption {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--brand-dark);
+  text-align: center;
+  margin-top: 0.75rem;
+}
+.clip__credit {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}

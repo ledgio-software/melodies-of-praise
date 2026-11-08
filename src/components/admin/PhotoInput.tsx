@@ -5,12 +5,12 @@ import { useRef, useState } from "react";
 const MAX_EDGE = 2400;
 
 /** Resize a phone photo in the browser (max 2400px, JPEG) so uploads are quick and small. */
-async function shrink(file: File): Promise<File> {
+export async function shrink(file: File, maxEdge = MAX_EDGE): Promise<File> {
   if (!/^image\/(jpeg|png|webp|heic|heif)$/.test(file.type) && !file.name.match(/\.(heic|heif)$/i)) return file;
   try {
     const bitmap = await createImageBitmap(file);
-    const scale = Math.min(1, MAX_EDGE / Math.max(bitmap.width, bitmap.height));
-    if (scale === 1 && file.type === "image/jpeg" && file.size < 2_500_000) return file;
+    const scale = Math.min(1, maxEdge / Math.max(bitmap.width, bitmap.height));
+    if (scale === 1 && file.type === "image/jpeg" && file.size < (maxEdge < MAX_EDGE ? 900_000 : 2_500_000)) return file;
     const canvas = document.createElement("canvas");
     canvas.width = Math.round(bitmap.width * scale);
     canvas.height = Math.round(bitmap.height * scale);

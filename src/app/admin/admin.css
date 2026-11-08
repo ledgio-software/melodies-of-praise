@@ -246,3 +246,10 @@
 .adm-auth__logo { display: block; margin: 0 auto 0.75rem; }
 
 .adm .form > .adm-btn-sm, .adm .form > button.adm-btn-sm { justify-self: start; }
+
+/* outreach photos */
+.adm-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 0.5rem; margin-bottom: 0.7rem; }
+.adm-photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; border: 1px solid var(--line); display: block; }
+.adm-photo-pick { position: relative; display: block; cursor: pointer; }
+.adm-photo-pick input { position: absolute; top: 6px; left: 6px; width: 18px; height: 18px; }
+.adm-photo-pick:has(input:checked) img { opacity: 0.35; outline: 2px solid #b3261e; }

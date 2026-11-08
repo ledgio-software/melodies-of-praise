@@ -5,7 +5,7 @@ import { getContent } from "@/lib/content";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Give",
+  title: "Donate",
   description: `Support the ministry of ${site.name} through Mobile Money.`,
 };
 
@@ -15,7 +15,7 @@ export default async function Donate() {
   const pretty = d.number.replace(/^(\d{3})(\d{3})(\d{4})$/, "$1 $2 $3");
   return (
     <>
-      <PageBanner eyebrow="Support the ministry" title="Give" intro="“Each of you should give what you have decided in your heart to give… for God loves a cheerful giver.” · 2 Corinthians 9:7" image={site.pageBanners.give} />
+      <PageBanner eyebrow="Support the ministry" title="Donate" intro="“Each of you should give what you have decided in your heart to give… for God loves a cheerful giver.” · 2 Corinthians 9:7" image={site.pageBanners.give} />
       <section className="section">
         <div className="container narrow">
           <div className="card card--framed momo">
@@ -39,6 +39,10 @@ export default async function Donate() {
                 <li>Enter the amount and your reference, then your PIN.</li>
               </ol>
               <p className="field__hint">{d.note}</p>
+              <p className="scam-note" role="note">
+                <strong>Stay safe:</strong> {site.name} will never call or message you asking you to send money to any other number.
+                The only number we use is <strong>{pretty}</strong> ({d.accountName}). If someone asks otherwise, please don’t send, and let a choir leader know.
+              </p>
             </div>
             <div>
               <h3>What your gift supports</h3>

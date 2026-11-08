@@ -15,6 +15,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     { href: "/admin/inbox", label: "Inbox", badge: unread?.n ?? 0 },
     { href: "/admin/news", label: "News" },
     { href: "/admin/events", label: "Events" },
+    { href: "/admin/outreach", label: "Outreach" },
     { href: "/admin/photos", label: "Photos & slideshow" },
     { href: "/admin/leaders", label: "Leaders" },
     { href: "/admin/music", label: "Music videos" },

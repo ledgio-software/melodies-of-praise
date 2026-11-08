@@ -4,8 +4,8 @@ Official website of **Melodies of Praise (MOP)**, The Church of Pentecost, Lapaz
 Built with Next.js and deployed on Vercel.
 
 ## Pages
-Home · About (history, milestones, mission & vision, leadership) · News · Music · Events · Gallery ·
-Join Us (form) · Bookings (form) · Give (MTN MoMo) · Contact (map)
+Home · About (history, milestones, mission & vision, leadership) · News · Music · Events · Outreach · Gallery ·
+Join Us (form) · Bookings (form) · Donate (MTN MoMo) · Contact (map), plus the “Ask MOP” AI help desk on every page
 
 ## Admin dashboard (`/admin`)
 The publicity team manages the site at **/admin**, from a phone or computer:
@@ -15,6 +15,7 @@ The publicity team manages the site at **/admin**, from a phone or computer:
 | Inbox | Booking requests and Join Us applications from the website, with one-tap WhatsApp / call / email replies |
 | News | Write posts with a cover photo; publish, keep as draft, or schedule for a future date. Shown at /news, one page per story, latest three on the home page |
 | Events | Add, edit, delete events (past ones move to “Recent” automatically) |
+| Outreach | Community outreach stories with several photos each, shown at /outreach |
 | Photos & slideshow | Upload photos (resized in the browser), choose slideshow / gallery, reorder, pick the page-banner photo |
 | Leaders | Names, titles, portraits and order on the About page |
 | Music videos | Paste a YouTube link to feature it on the Music page |
@@ -48,6 +49,19 @@ Text that rarely changes (history, mission, vision, milestones, scripture) stays
 Submissions are saved to the dashboard Inbox when the database is connected. Optionally, a copy is emailed via
 [Resend](https://resend.com) when `RESEND_API_KEY` and `ENQUIRY_TO_EMAIL` are set. If neither is available,
 the forms open WhatsApp with the details pre-filled (needs a WhatsApp number in Site settings).
+
+## AI help desk (“Ask MOP”)
+A chat button on every page answers visitors' questions using **Claude (Anthropic)**, from the website's own
+public content only (rehearsals, joining, bookings, donating, leaders, events, news, outreach). It's built in
+`src/lib/helpdesk.ts` (what it knows and how it answers) and `src/app/api/helpdesk/route.ts`.
+
+- **Turn it on:** create an API key at [console.anthropic.com](https://console.anthropic.com), set a monthly
+  spend limit there, then add `ANTHROPIC_API_KEY` in Vercel → Settings → Environment Variables and redeploy.
+  The button stays hidden until the key is set. `HELPDESK_MODEL` optionally changes the model.
+- **Privacy:** chats aren't stored. Nothing from the database that isn't already on the public website is sent.
+  For rate limiting, only a one-way hash of the visitor's IP address and the time are kept, for one day.
+  Data sent through the Anthropic API isn't used to train their models by default (see Anthropic's commercial terms).
+- **Cost limits:** 20 questions per visitor per 30 minutes and 600 per day across the site (`HELPDESK_LIMITS`).
 
 ## Deploying to Vercel
 1. On vercel.com → **Add New → Project** → import `ledgio-software/melodies-of-praise`.

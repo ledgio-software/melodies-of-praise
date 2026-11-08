@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Flash, type FlashParams } from "@/components/admin/Flash";
 import { requireUser } from "@/lib/auth";
 import { query, queryOne } from "@/lib/db";
+import { blobToken } from "@/lib/storage";
 
 export default async function Overview({ searchParams }: { searchParams: FlashParams }) {
   const user = await requireUser();
@@ -20,7 +21,7 @@ export default async function Overview({ searchParams }: { searchParams: FlashPa
       `SELECT id, title, to_char(date, 'Dy DD Mon YYYY') AS date FROM events WHERE date >= CURRENT_DATE ORDER BY date LIMIT 3`,
     ),
   ]);
-  const blob = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  const blob = Boolean(blobToken());
   const email = Boolean(process.env.RESEND_API_KEY && process.env.ENQUIRY_TO_EMAIL);
 
   return (

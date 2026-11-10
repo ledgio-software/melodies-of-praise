@@ -3,9 +3,10 @@ import { randomBytes } from "node:crypto";
 import { FormError } from "./admin";
 
 /**
- * Photo storage. Production uses Vercel Blob (BLOB_READ_WRITE_TOKEN is set when
- * a Blob store is connected to the project). In local development without a
- * token, files are written to public/uploads so the dashboard can be tried out.
+ * Photo storage. Production uses Vercel Blob: connecting a store to the project
+ * sets BLOB_STORE_ID (newer stores, signed in through Vercel OIDC) or
+ * BLOB_READ_WRITE_TOKEN (older stores). In local development without either,
+ * files are written to public/uploads so the dashboard can be tried out.
  */
 
 /**
@@ -19,7 +20,16 @@ export function blobToken(): string | undefined {
   return key ? process.env[key] : undefined;
 }
 
-export const storageEnabled = Boolean(blobToken()) || process.env.NODE_ENV !== "production";
+/**
+ * Newer Vercel Blob connections add BLOB_STORE_ID instead of a token; on
+ * Vercel the library then signs in by itself (OIDC), so no key is stored.
+ */
+const blobStoreId = () => process.env.BLOB_STORE_ID || undefined;
+
+/** True when uploads go to Vercel Blob, through either kind of connection. */
+export const blobConnected = () => Boolean(blobStoreId() || blobToken());
+
+export const storageEnabled = blobConnected() || process.env.NODE_ENV !== "production";
 
 const MAX_BYTES = 4 * 1024 * 1024;
 const TYPES: Record<string, string> = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
@@ -34,15 +44,17 @@ export async function savePhoto(file: File, folder: "photos" | "leaders"): Promi
   if (file.size > MAX_BYTES) throw new UploadError("That photo is too large (max 4 MB).");
   const name = `${folder}/${Date.now()}-${randomBytes(4).toString("hex")}.${ext}`;
 
-  const token = blobToken();
-  if (token) {
+  if (blobConnected()) {
     const { put } = await import("@vercel/blob");
     try {
-      const blob = await put(name, file, { access: "public", contentType: file.type, token });
+      // with BLOB_STORE_ID the library signs in through Vercel itself; otherwise it uses the token
+      const auth = blobStoreId() ? {} : { token: blobToken() };
+      const blob = await put(name, file, { access: "public", contentType: file.type, ...auth });
       return blob.url;
     } catch (err) {
       console.error("Blob upload failed", err);
       const msg = err instanceof Error ? err.message : "";
+      if (/oidc/i.test(msg)) throw new UploadError("Photo storage couldn't sign in. In Vercel, check Settings → Security → OIDC Federation is on, then redeploy.");
       if (/private/i.test(msg)) throw new UploadError("The photo store is set to Private. Create a Public Blob store in Vercel and connect it to the project.");
       throw new UploadError("The photo could not be uploaded. Please try again.");
     }
@@ -62,10 +74,9 @@ export async function savePhoto(file: File, folder: "photos" | "leaders"): Promi
 export async function deletePhoto(url: string | null | undefined) {
   if (!url) return;
   try {
-    const token = blobToken();
-    if (url.includes(".blob.vercel-storage.com") && token) {
+    if (url.includes(".blob.vercel-storage.com") && blobConnected()) {
       const { del } = await import("@vercel/blob");
-      await del(url, { token });
+      await del(url, blobStoreId() ? {} : { token: blobToken() });
     } else if (url.startsWith("/uploads/") && process.env.NODE_ENV !== "production") {
       const { unlink } = await import("node:fs/promises");
       const path = await import("node:path");

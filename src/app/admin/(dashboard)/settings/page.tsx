@@ -72,7 +72,7 @@ export default async function SettingsAdmin({ searchParams }: { searchParams: Fl
         <F name="tiktok" label="TikTok" value={c.social.tiktok} type="url" />
       </Section>
 
-      <Section id="donation" title="Giving (Mobile Money)" intro="Shown on the Give page. Double-check the number: people will send money to it.">
+      <Section id="donation" title="Donations (Mobile Money)" intro="Shown on the Donate page. Double-check the number: people will send money to it.">
         <div className="form__row">
           <F name="network" label="Network" value={c.donation.network} required placeholder="e.g. MTN Mobile Money" />
           <F name="number" label="MoMo number" value={c.donation.number} type="tel" required />

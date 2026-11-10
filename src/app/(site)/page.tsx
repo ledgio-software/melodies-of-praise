@@ -137,7 +137,7 @@ export default async function Home() {
             <ServeCard icon={<IconMusic size={34} />} title="Listen & watch" href="/music" cta="Our music">
               Ministrations, rehearsals and special performances, on YouTube and across our social pages.
             </ServeCard>
-            <ServeCard icon={<IconHeart size={34} />} title="Support the ministry" href="/donate" cta="Give">
+            <ServeCard icon={<IconHeart size={34} />} title="Support the ministry" href="/donate" cta="Donate">
               Your gifts help with robes, instruments, transport and outreach as we take the gospel in song further.
             </ServeCard>
           </div>

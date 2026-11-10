@@ -131,6 +131,23 @@ const SCHEMA = [
     updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
   )`,
   `CREATE INDEX IF NOT EXISTS news_published_idx ON news (published, published_on DESC)`,
+  `CREATE TABLE IF NOT EXISTS outreach (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    place TEXT NOT NULL DEFAULT '',
+    story TEXT NOT NULL DEFAULT '',
+    photos JSONB NOT NULL DEFAULT '[]'::jsonb,
+    published BOOLEAN NOT NULL DEFAULT true,
+    happened_on DATE NOT NULL DEFAULT CURRENT_DATE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+  )`,
+  // help desk rate limiting: a hashed visitor key and a time, never the question asked
+  `CREATE TABLE IF NOT EXISTS helpdesk_hits (
+    id SERIAL PRIMARY KEY,
+    visitor TEXT NOT NULL,
+    at TIMESTAMPTZ NOT NULL DEFAULT now()
+  )`,
+  `CREATE INDEX IF NOT EXISTS helpdesk_hits_idx ON helpdesk_hits (visitor, at)`,
 ];
 
 async function migrate(run: QueryFn) {
@@ -142,6 +159,17 @@ async function migrate(run: QueryFn) {
   );
   if (claimed.length > 0) await seed(run);
   await addLeadersOnce(run, "leaders_v8");
+  await renameTitleOnce(run, "title_welfare_v1", "Miss Josephine Ocran", "Financial Secretary", "Welfare");
+}
+
+/** One-time title change for a leader, only if the title hasn't been edited in the dashboard since. */
+async function renameTitleOnce(run: QueryFn, key: string, name: string, from: string, to: string) {
+  const claimed = await run(
+    `INSERT INTO settings (key, value) VALUES ($1, 'true'::jsonb) ON CONFLICT (key) DO NOTHING RETURNING key`,
+    [key],
+  );
+  if (claimed.length === 0) return;
+  await run(`UPDATE leaders SET title = $1 WHERE lower(name) = lower($2) AND title = $3`, [to, name, from]);
 }
 
 /**

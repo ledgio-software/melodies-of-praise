@@ -403,7 +403,7 @@ p {
   cursor: pointer;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1340px) {
   .nav__toggle {
     display: inline-flex;
     align-items: center;
@@ -945,6 +945,30 @@ p {
 }
 .momo__name {
   font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.scam-note {
+  margin-top: 1.25rem;
+  padding: 0.85rem 1rem;
+  border-left: 4px solid var(--brand);
+  background: rgb(103 11 32 / 0.06);
+  font-size: 0.98rem;
+}
+
+/* outreach */
+.outreach {
+  display: grid;
+  gap: 4rem;
+}
+.outreach__item + .outreach__item {
+  border-top: 1px solid var(--line);
+  padding-top: 4rem;
+}
+.outreach__head h2 {
+  margin: 0.2em 0 0.5em;
+}
+.outreach__story {
+  max-width: 68ch;
   margin-bottom: 1.5rem;
 }
 
@@ -1513,4 +1537,134 @@ p {
   font-size: 0.85rem;
   color: var(--muted);
   margin-top: 0.15rem;
+}
+
+/* AI help desk */
+.helpdesk__launch {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem 0.65rem 0.7rem;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--white);
+  font: 600 1.05rem/1 var(--font-body);
+  box-shadow: 0 8px 24px rgb(46 4 16 / 0.35);
+  cursor: pointer;
+}
+.helpdesk__launch:hover { background: var(--brand-dark); }
+.helpdesk__launch:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.helpdesk__dot {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--brand-deepest);
+  font-weight: 700;
+}
+.helpdesk {
+  position: fixed;
+  right: 1rem;
+  bottom: 4.6rem;
+  z-index: 60;
+  width: min(380px, calc(100vw - 2rem));
+  height: min(560px, calc(100dvh - 6.5rem));
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgb(21 18 19 / 0.28);
+  overflow: hidden;
+  animation: helpdesk-in 0.18s ease-out;
+}
+@keyframes helpdesk-in { from { opacity: 0; transform: translateY(8px); } }
+.helpdesk__head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--brand-deepest);
+  color: var(--white);
+}
+.helpdesk__head strong { display: block; font-family: var(--font-display); font-size: 1.2rem; line-height: 1.1; }
+.helpdesk__head small { opacity: 0.75; font-size: 0.85rem; }
+.helpdesk__x { margin-left: auto; background: none; border: 0; color: inherit; cursor: pointer; padding: 0.3rem; }
+.helpdesk__log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 0.9rem;
+  background: var(--parchment);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.helpdesk__msg {
+  margin: 0;
+  max-width: 88%;
+  padding: 0.6rem 0.85rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.helpdesk__msg--bot { align-self: flex-start; background: var(--white); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+.helpdesk__msg--me { align-self: flex-end; background: var(--brand); color: var(--white); border-bottom-right-radius: 4px; }
+.helpdesk__msg a { color: var(--brand); font-weight: 600; }
+.helpdesk__chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.helpdesk__chips button {
+  border: 1px solid var(--brand);
+  background: var(--white);
+  color: var(--brand);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font: inherit;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+.helpdesk__chips button:hover { background: var(--brand); color: var(--white); }
+.helpdesk__err { margin: 0; color: #9b1c1c; font-size: 0.95rem; }
+.helpdesk__typing { display: inline-flex; gap: 4px; padding: 0.25rem 0; }
+.helpdesk__typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--brand); opacity: 0.35; animation: helpdesk-dot 1s infinite; }
+.helpdesk__typing i:nth-child(2) { animation-delay: 0.15s; }
+.helpdesk__typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes helpdesk-dot { 50% { opacity: 1; } }
+.helpdesk__form { display: flex; gap: 0.5rem; padding: 0.6rem; border-top: 1px solid var(--line); }
+.helpdesk__form textarea {
+  flex: 1;
+  resize: none;
+  min-height: 42px;
+  max-height: 120px;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 1rem;
+}
+.helpdesk__form textarea:focus { outline: 2px solid var(--brand); outline-offset: 0; }
+.helpdesk__form button {
+  border: 0;
+  border-radius: 8px;
+  padding: 0 1rem;
+  background: var(--brand);
+  color: var(--white);
+  font: 600 1rem var(--font-body);
+  cursor: pointer;
+}
+.helpdesk__form button:disabled { opacity: 0.45; cursor: default; }
+.helpdesk__note { margin: 0; padding: 0 0.8rem 0.6rem; font-size: 0.78rem; color: var(--muted); line-height: 1.35; }
+@media (max-width: 480px) {
+  .helpdesk { right: 0.5rem; left: 0.5rem; width: auto; bottom: 4.2rem; height: calc(100dvh - 5.5rem); }
+  .helpdesk__launch { right: 0.75rem; bottom: 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .helpdesk, .helpdesk__typing i { animation: none; }
 }
